@@ -76,6 +76,7 @@ Partial Class Form1
         'txtMessage
         '
         Me.txtMessage.Location = New System.Drawing.Point(13, 29)
+        Me.txtMessage.MaxLength = 65534
         Me.txtMessage.Multiline = True
         Me.txtMessage.Name = "txtMessage"
         Me.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Both
@@ -119,9 +120,9 @@ Partial Class Form1
         '
         'txtSendQueue
         '
-        Me.txtSendQueue.Location = New System.Drawing.Point(68, 40)
+        Me.txtSendQueue.Location = New System.Drawing.Point(75, 40)
         Me.txtSendQueue.Name = "txtSendQueue"
-        Me.txtSendQueue.Size = New System.Drawing.Size(227, 20)
+        Me.txtSendQueue.Size = New System.Drawing.Size(220, 20)
         Me.txtSendQueue.TabIndex = 5
         '
         'GroupBox1
@@ -169,16 +170,16 @@ Partial Class Form1
         'lblSendQueue
         '
         Me.lblSendQueue.AutoSize = True
-        Me.lblSendQueue.Location = New System.Drawing.Point(20, 43)
+        Me.lblSendQueue.Location = New System.Drawing.Point(6, 43)
         Me.lblSendQueue.Name = "lblSendQueue"
-        Me.lblSendQueue.Size = New System.Drawing.Size(42, 13)
+        Me.lblSendQueue.Size = New System.Drawing.Size(63, 13)
         Me.lblSendQueue.TabIndex = 4
-        Me.lblSendQueue.Text = "Queue:"
+        Me.lblSendQueue.Text = "Destination:"
         '
         'lblSendServer
         '
         Me.lblSendServer.AutoSize = True
-        Me.lblSendServer.Location = New System.Drawing.Point(6, 16)
+        Me.lblSendServer.Location = New System.Drawing.Point(13, 17)
         Me.lblSendServer.Name = "lblSendServer"
         Me.lblSendServer.Size = New System.Drawing.Size(56, 13)
         Me.lblSendServer.TabIndex = 0
@@ -186,9 +187,9 @@ Partial Class Form1
         '
         'txtSendServer
         '
-        Me.txtSendServer.Location = New System.Drawing.Point(68, 13)
+        Me.txtSendServer.Location = New System.Drawing.Point(75, 13)
         Me.txtSendServer.Name = "txtSendServer"
-        Me.txtSendServer.Size = New System.Drawing.Size(227, 20)
+        Me.txtSendServer.Size = New System.Drawing.Size(220, 20)
         Me.txtSendServer.TabIndex = 1
         '
         'GroupBox2
@@ -225,16 +226,16 @@ Partial Class Form1
         'lblReceiveQueue
         '
         Me.lblReceiveQueue.AutoSize = True
-        Me.lblReceiveQueue.Location = New System.Drawing.Point(20, 43)
+        Me.lblReceiveQueue.Location = New System.Drawing.Point(25, 43)
         Me.lblReceiveQueue.Name = "lblReceiveQueue"
-        Me.lblReceiveQueue.Size = New System.Drawing.Size(42, 13)
+        Me.lblReceiveQueue.Size = New System.Drawing.Size(44, 13)
         Me.lblReceiveQueue.TabIndex = 4
-        Me.lblReceiveQueue.Text = "Queue:"
+        Me.lblReceiveQueue.Text = "Source:"
         '
         'lblReceiveServer
         '
         Me.lblReceiveServer.AutoSize = True
-        Me.lblReceiveServer.Location = New System.Drawing.Point(6, 17)
+        Me.lblReceiveServer.Location = New System.Drawing.Point(13, 16)
         Me.lblReceiveServer.Name = "lblReceiveServer"
         Me.lblReceiveServer.Size = New System.Drawing.Size(56, 13)
         Me.lblReceiveServer.TabIndex = 0
@@ -242,16 +243,16 @@ Partial Class Form1
         '
         'txtReceiveServer
         '
-        Me.txtReceiveServer.Location = New System.Drawing.Point(68, 14)
+        Me.txtReceiveServer.Location = New System.Drawing.Point(75, 14)
         Me.txtReceiveServer.Name = "txtReceiveServer"
-        Me.txtReceiveServer.Size = New System.Drawing.Size(227, 20)
+        Me.txtReceiveServer.Size = New System.Drawing.Size(220, 20)
         Me.txtReceiveServer.TabIndex = 1
         '
         'txtReceiveQueue
         '
-        Me.txtReceiveQueue.Location = New System.Drawing.Point(68, 41)
+        Me.txtReceiveQueue.Location = New System.Drawing.Point(75, 41)
         Me.txtReceiveQueue.Name = "txtReceiveQueue"
-        Me.txtReceiveQueue.Size = New System.Drawing.Size(227, 20)
+        Me.txtReceiveQueue.Size = New System.Drawing.Size(220, 20)
         Me.txtReceiveQueue.TabIndex = 5
         '
         'cmdClearInput
@@ -277,18 +278,18 @@ Partial Class Form1
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(19, 390)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(79, 13)
+        Me.Label2.Size = New System.Drawing.Size(32, 13)
         Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Send to Queue"
+        Me.Label2.Text = "Send"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(531, 390)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(105, 13)
+        Me.Label3.Size = New System.Drawing.Size(47, 13)
         Me.Label3.TabIndex = 5
-        Me.Label3.Text = "Receive from Queue"
+        Me.Label3.Text = "Receive"
         '
         'Form1
         '

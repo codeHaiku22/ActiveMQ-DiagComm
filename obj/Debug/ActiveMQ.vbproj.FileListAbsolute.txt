@@ -12,3 +12,4 @@ C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ\obj\Debug\Active
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ\obj\Debug\ActiveMQ.exe
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ\obj\Debug\ActiveMQ.xml
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ\obj\Debug\ActiveMQ.pdb
+C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ\obj\Debug\ActiveMQ.vbproj.AssemblyReference.cache

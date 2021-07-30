@@ -3,7 +3,6 @@ Imports Apache.NMS
 Imports Apache.NMS.Util
 Imports System.Data.SqlClient
 Imports System.Text.RegularExpressions
-
 Imports System.Xml
 Public Class Form1
 
@@ -53,7 +52,7 @@ Public Class Form1
             connection = factory.CreateConnection()
             session = connection.CreateSession()
             destination = SessionUtil.GetDestination(session, mstrSendServerQueue)
-            ShowOutput("Using destination queue: " & destination.ToString)
+            ShowOutput("Using destination: " & destination.ToString)
             producer = session.CreateProducer(destination)
             message = session.CreateTextMessage(txtMessage.Text)
             connection.Start()
@@ -87,7 +86,7 @@ Public Class Form1
         Dim factory As IConnectionFactory
         Dim connection As IConnection
         Dim session As ISession
-        Dim destination As IDestination
+        Dim source As IDestination
         Dim consumer As IMessageConsumer
         Dim message As ITextMessage
 
@@ -109,16 +108,16 @@ Public Class Form1
             factory = New NMSConnectionFactory(mstrReceiveServerUri)
             connection = factory.CreateConnection()
             session = connection.CreateSession()
-            destination = SessionUtil.GetDestination(session, mstrReceiveServerQueue)
-            ShowOutput("Using destination queue: " & destination.ToString)
-            consumer = session.CreateConsumer(destination)
+            source = SessionUtil.GetDestination(session, mstrReceiveServerQueue)
+            ShowOutput("Using source: " & source.ToString)
+            consumer = session.CreateConsumer(source)
             connection.Start()
             message = consumer.Receive(tmspnTimeout)
             If message Is Nothing Then
                 ShowOutput("No message received!")
             Else
                 message.Acknowledge()
-                ShowOutput("Messsage successfully received from: " & destination.ToString)
+                ShowOutput("Messsage successfully received from: " & source.ToString)
                 ShowOutput("Message text:")
                 ShowOutput(message.Text)
             End If
