@@ -131,7 +131,7 @@ Public Class Form1
         End Try
 
     End Sub
-    Private Sub cmdClearInput_Click(sender As Object, e As EventArgs)
+    Private Sub cmdClearInput_Click(sender As Object, e As EventArgs) Handles cmdClearInput.Click
 
         txtMessage.Clear()
 
