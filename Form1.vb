@@ -99,7 +99,7 @@ Public Class Form1
         strReceiveServer = txtReceiveServer.Text.Trim
         strReceivePort = txtReceivePort.Text.Trim
         mstrReceiveServerUri = "tcp://" & strReceiveServer & ":" & strReceivePort
-        mstrReceiveServerQueue = txtSendQueue.Text.Trim
+        mstrReceiveServerQueue = txtReceiveQueue.Text.Trim
 
         Try
             ShowOutput("########## MESSAGE RECEIVE ##########")
