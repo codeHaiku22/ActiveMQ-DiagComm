@@ -17,6 +17,7 @@ Public Class Form1
 
         txtSendPort.Text = "61616"
         txtReceivePort.Text = "61616"
+        chkAcknowledge.Checked = False
 
     End Sub
     Private Sub cmdSend_Click(sender As Object, e As EventArgs) Handles cmdSend.Click
@@ -107,7 +108,9 @@ Public Class Form1
             ShowOutput("Connecting to: " & mstrReceiveServerUri.ToString)
             factory = New NMSConnectionFactory(mstrReceiveServerUri)
             connection = factory.CreateConnection()
-            session = connection.CreateSession()
+            'session = connection.CreateSession()
+            'session = connection.CreateSession(AcknowledgementMode.ClientAcknowledge)
+            session = connection.CreateSession(AcknowledgementMode.IndividualAcknowledge)
             source = SessionUtil.GetDestination(session, mstrReceiveServerQueue)
             ShowOutput("Using source: " & source.ToString)
             consumer = session.CreateConsumer(source)
@@ -116,10 +119,10 @@ Public Class Form1
             If message Is Nothing Then
                 ShowOutput("No message received!")
             Else
-                message.Acknowledge()
                 ShowOutput("Messsage successfully received from: " & source.ToString)
                 ShowOutput("Message text:")
                 ShowOutput(message.Text)
+                If chkAcknowledge.Checked Then message.Acknowledge()
             End If
         Catch ex As Exception
             ShowOutput("An error occurred when receiving a message from: " & mstrReceiveServerQueue)

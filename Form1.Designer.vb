@@ -49,6 +49,7 @@ Partial Class Form1
         Me.cmdCopy = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.chkAcknowledge = New System.Windows.Forms.CheckBox()
         CType(Me.nudQty, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -97,7 +98,7 @@ Partial Class Form1
         Me.cmdReceive.Location = New System.Drawing.Point(389, 38)
         Me.cmdReceive.Name = "cmdReceive"
         Me.cmdReceive.Size = New System.Drawing.Size(75, 23)
-        Me.cmdReceive.TabIndex = 6
+        Me.cmdReceive.TabIndex = 7
         Me.cmdReceive.Text = "&Receive"
         Me.cmdReceive.UseVisualStyleBackColor = True
         '
@@ -194,6 +195,7 @@ Partial Class Form1
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.chkAcknowledge)
         Me.GroupBox2.Controls.Add(Me.txtReceivePort)
         Me.GroupBox2.Controls.Add(Me.lblReceivePort)
         Me.GroupBox2.Controls.Add(Me.lblReceiveQueue)
@@ -291,6 +293,16 @@ Partial Class Form1
         Me.Label3.TabIndex = 5
         Me.Label3.Text = "Receive"
         '
+        'chkAcknowledge
+        '
+        Me.chkAcknowledge.AutoSize = True
+        Me.chkAcknowledge.Location = New System.Drawing.Point(315, 42)
+        Me.chkAcknowledge.Name = "chkAcknowledge"
+        Me.chkAcknowledge.Size = New System.Drawing.Size(68, 17)
+        Me.chkAcknowledge.TabIndex = 6
+        Me.chkAcknowledge.Text = "Ack Msg"
+        Me.chkAcknowledge.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -346,4 +358,5 @@ Partial Class Form1
     Friend WithEvents lblSendPort As Label
     Friend WithEvents txtReceivePort As TextBox
     Friend WithEvents lblReceivePort As Label
+    Friend WithEvents chkAcknowledge As CheckBox
 End Class
