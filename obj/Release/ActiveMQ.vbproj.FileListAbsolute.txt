@@ -13,3 +13,18 @@ C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ\obj\Release\Acti
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ\obj\Release\ActiveMQ.xml
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ\obj\Release\ActiveMQ.pdb
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ\obj\Release\ActiveMQ.vbproj.AssemblyReference.cache
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\bin\Release\ActiveMQ.exe.config
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\bin\Release\ActiveMQ.exe
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\bin\Release\ActiveMQ.pdb
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\bin\Release\ActiveMQ.xml
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\bin\Release\Apache.NMS.ActiveMQ.dll
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\bin\Release\Apache.NMS.dll
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Release\ActiveMQ.vbproj.AssemblyReference.cache
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Release\ActiveMQ.Form1.resources
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Release\ActiveMQ.Resources.resources
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Release\ActiveMQ.vbproj.GenerateResource.cache
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Release\ActiveMQ.vbproj.CoreCompileInputs.cache
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Release\ActiveMQ.vbproj.CopyComplete
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Release\ActiveMQ.exe
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Release\ActiveMQ.xml
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Release\ActiveMQ.pdb

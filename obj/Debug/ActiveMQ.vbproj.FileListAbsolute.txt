@@ -13,3 +13,17 @@ C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ\obj\Debug\Active
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ\obj\Debug\ActiveMQ.xml
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ\obj\Debug\ActiveMQ.pdb
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ\obj\Debug\ActiveMQ.vbproj.AssemblyReference.cache
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\bin\Debug\ActiveMQ.exe.config
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\bin\Debug\ActiveMQ.exe
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\bin\Debug\ActiveMQ.pdb
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\bin\Debug\ActiveMQ.xml
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\bin\Debug\Apache.NMS.ActiveMQ.dll
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\bin\Debug\Apache.NMS.dll
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Debug\ActiveMQ.Form1.resources
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Debug\ActiveMQ.Resources.resources
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Debug\ActiveMQ.vbproj.GenerateResource.cache
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Debug\ActiveMQ.vbproj.CoreCompileInputs.cache
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Debug\ActiveMQ.vbproj.CopyComplete
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Debug\ActiveMQ.exe
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Debug\ActiveMQ.xml
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Debug\ActiveMQ.pdb
