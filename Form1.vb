@@ -6,12 +6,6 @@ Imports System.Data.SqlClient
 Imports System.Text.RegularExpressions
 Public Class Form1
 
-    'Private message As ITextMessage
-    Private tmspnTimeout As TimeSpan = TimeSpan.FromSeconds(10)
-    Private mstrSendServerUri As String
-    Private mstrReceiveServerUri As String
-    Private mstrSendServerQueue As String
-    Private mstrReceiveServerQueue As String
     'Protected semaphore As AutoResetEvent = New AutoResetEvent(False)
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
 
@@ -39,51 +33,47 @@ Public Class Form1
     End Sub
     Private Sub cmdSend_Click(sender As Object, e As EventArgs) Handles cmdSend.Click
 
-        Dim strSendServer As String
-        Dim strSendPort As String
-        Dim factory As IConnectionFactory
+        If txtSendServer.Text.Trim = "" Then Exit Sub
+        If txtSendQueue.Text.Trim = "" Then Exit Sub
+        If txtSendPort.Text.Trim = "" Or (Not IsNumeric(txtSendPort.Text.Trim)) Then Exit Sub
+        If CInt(nudQty.Value) <= 0 Then Exit Sub
+
+        Dim strSendServerUri As String = "tcp://" & txtSendServer.Text.Trim & ":" & txtSendPort.Text.Trim
+        Dim strSendName As String = txtSendQueue.Text.Trim
         Dim connection As IConnection
         Dim session As ISession
         Dim destination As IDestination
         Dim producer As IMessageProducer
-        Dim message As ITextMessage
-        Dim intQty As Integer = CInt(nudQty.Value)
-
-        If txtSendServer.Text.Trim = "" Then Exit Sub
-
-        If txtSendQueue.Text.Trim = "" Then Exit Sub
-
-        If txtSendPort.Text.Trim = "" Or (Not IsNumeric(txtSendPort.Text.Trim)) Then Exit Sub
-
-        If intQty <= 0 Then Exit Sub
-
-        strSendServer = txtSendServer.Text.Trim
-        strSendPort = txtSendPort.Text.Trim
-        mstrSendServerUri = "tcp://" & strSendServer & ":" & strSendPort
-        mstrSendServerQueue = txtSendQueue.Text.Trim
+        Dim blnError As Boolean
 
         Try
             ShowOutput("########## MESSAGE SEND ##########")
             ShowOutput(Now().ToString)
-            ShowOutput("Connecting to: " & mstrSendServerUri.ToString)
-            factory = New NMSConnectionFactory(mstrSendServerUri)
+            ShowOutput("Connecting to: " & strSendServerUri)
+            Dim tspTimeout As TimeSpan = TimeSpan.FromSeconds(10)
+            Dim factory As IConnectionFactory = New NMSConnectionFactory(strSendServerUri)
             connection = factory.CreateConnection()
-            session = connection.CreateSession()
-            destination = SessionUtil.GetDestination(session, mstrSendServerQueue)
+            session = connection.CreateSession(AcknowledgementMode.Transactional)
+            destination = SessionUtil.GetDestination(session, strSendName)
             ShowOutput("Using destination: " & destination.ToString)
             producer = session.CreateProducer(destination)
+            Dim message As ITextMessage
             If Not CreateMessage(session, message) Then Exit Sub
             connection.Start()
             producer.DeliveryMode = message.NMSDeliveryMode
             producer.Priority = message.NMSPriority
-            producer.RequestTimeout = tmspnTimeout
-            For intCnt = 1 To intQty
+            producer.RequestTimeout = tspTimeout
+            For intCnt = 1 To CInt(nudQty.Value)
                 producer.Send(message)
                 ShowOutput("Message sent with Message Id: " & message.NMSMessageId)
             Next intCnt
-            ShowOutput(intQty & " message(s) successfully sent to: " & destination.ToString)
+            Throw New System.Exception("Failed!")
+            session.Commit()
+            ShowOutput(CInt(nudQty.Value).ToString & " message(s) successfully sent to: " & destination.ToString)
         Catch ex As Exception
-            ShowOutput("An error occurred when sending message(s) to: " & mstrSendServerQueue)
+            blnError = True
+            If session IsNot Nothing Then session.Rollback()
+            ShowOutput("An error occurred when sending message(s) to: " & strSendName)
             ShowOutput(ex.Message)
         Finally
             ShowOutput("")
@@ -109,40 +99,31 @@ Public Class Form1
     End Sub
     Private Sub cmdReceive_Click(sender As Object, e As EventArgs) Handles cmdReceive.Click
 
-        Dim strReceiveServer As String
-        Dim strReceivePort As String
-        Dim factory As IConnectionFactory
+        If txtReceiveServer.Text.Trim = "" Then Exit Sub
+        If txtReceiveQueue.Text.Trim = "" Then Exit Sub
+        If txtReceivePort.Text.Trim = "" Or (Not IsNumeric(txtReceivePort.Text.Trim)) Then Exit Sub
+
+        Dim strReceiveServerUri As String = "tcp://" & txtReceiveServer.Text.Trim & ":" & txtReceivePort.Text.Trim
+        Dim strReceiveName As String = txtReceiveQueue.Text.Trim
+
         Dim connection As IConnection
         Dim session As ISession
         Dim source As IDestination
         Dim consumer As IMessageConsumer
-        Dim message As ITextMessage
-
-        If txtReceiveServer.Text.Trim = "" Then Exit Sub
-
-        If txtReceiveQueue.Text.Trim = "" Then Exit Sub
-
-        If txtReceivePort.Text.Trim = "" Or (Not IsNumeric(txtReceivePort.Text.Trim)) Then Exit Sub
-
-        strReceiveServer = txtReceiveServer.Text.Trim
-        strReceivePort = txtReceivePort.Text.Trim
-        mstrReceiveServerUri = "tcp://" & strReceiveServer & ":" & strReceivePort
-        mstrReceiveServerQueue = txtReceiveQueue.Text.Trim
 
         Try
             ShowOutput("########## MESSAGE RECEIVE ##########")
             ShowOutput(Now().ToString)
-            ShowOutput("Connecting to: " & mstrReceiveServerUri.ToString)
-            factory = New NMSConnectionFactory(mstrReceiveServerUri)
+            ShowOutput("Connecting to: " & strReceiveServerUri)
+            Dim tspTimeout As TimeSpan = TimeSpan.FromSeconds(10)
+            Dim factory As IConnectionFactory = New NMSConnectionFactory(strReceiveServerUri)
             connection = factory.CreateConnection()
-            'session = connection.CreateSession()
-            'session = connection.CreateSession(AcknowledgementMode.ClientAcknowledge)
             session = connection.CreateSession(AcknowledgementMode.IndividualAcknowledge)
-            source = SessionUtil.GetDestination(session, mstrReceiveServerQueue)
+            source = SessionUtil.GetDestination(session, strReceiveName)
             ShowOutput("Using source: " & source.ToString)
             consumer = session.CreateConsumer(source)
             connection.Start()
-            message = consumer.Receive(tmspnTimeout)
+            Dim message As ITextMessage = consumer.Receive(tspTimeout)
             If message Is Nothing Then
                 ShowOutput("No message received!")
             Else
@@ -151,7 +132,7 @@ Public Class Form1
                 If chkAcknowledge.Checked Then message.Acknowledge()
             End If
         Catch ex As Exception
-            ShowOutput("An error occurred when receiving a message from: " & mstrReceiveServerQueue)
+            ShowOutput("An error occurred when receiving a message from: " & strReceiveName)
             ShowOutput(ex.Message)
         Finally
             ShowOutput("")
@@ -210,7 +191,6 @@ Public Class Form1
         Dim blnError As Boolean
 
         Try
-            'Dim tsTimeToLive As TimeSpan = message.NMSTimeToLive - DateTime.Now
             With message
                 txtCorrelationId.Text = .NMSCorrelationID
                 chkPersistence.Checked = IIf(.NMSDeliveryMode = MsgDeliveryMode.Persistent, True, False)
