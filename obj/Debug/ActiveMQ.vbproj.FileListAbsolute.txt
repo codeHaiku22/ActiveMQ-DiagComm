@@ -27,3 +27,4 @@ C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic
 C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Debug\ActiveMQ.exe
 C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Debug\ActiveMQ.xml
 C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Debug\ActiveMQ.pdb
+C:\Users\dgrewal\Documents\Projects\Law and Justice\Alternative SOA\Visual Basic as SOA\ActiveMQ DiagComm\obj\Debug\ActiveMQ.vbproj.AssemblyReference.cache

@@ -28,7 +28,7 @@ Public Class Form1
         cmbPriority.SelectedIndex = 0
         txtSendPort.Text = "61616"
         txtReceivePort.Text = "61616"
-        chkAcknowledge.Checked = False
+        chkReceiveAcknowledge.Checked = False
 
     End Sub
     Private Sub cmdSend_Click(sender As Object, e As EventArgs) Handles cmdSend.Click
@@ -36,10 +36,11 @@ Public Class Form1
         If txtSendServer.Text.Trim = "" Then Exit Sub
         If txtSendQueue.Text.Trim = "" Then Exit Sub
         If txtSendPort.Text.Trim = "" Or (Not IsNumeric(txtSendPort.Text.Trim)) Then Exit Sub
-        If CInt(nudQty.Value) <= 0 Then Exit Sub
+        If CInt(nudSendQty.Value) <= 0 Then Exit Sub
 
         Dim strSendServerUri As String = "tcp://" & txtSendServer.Text.Trim & ":" & txtSendPort.Text.Trim
         Dim strSendName As String = txtSendQueue.Text.Trim
+        Dim blnThrottled As Boolean = (nudSendThrottle.Value > 0)
         Dim connection As IConnection
         Dim session As ISession
         Dim destination As IDestination
@@ -53,7 +54,7 @@ Public Class Form1
             Dim tspTimeout As TimeSpan = TimeSpan.FromSeconds(10)
             Dim factory As IConnectionFactory = New NMSConnectionFactory(strSendServerUri)
             connection = factory.CreateConnection()
-            session = connection.CreateSession(AcknowledgementMode.Transactional)
+            session = IIf(blnThrottled, connection.CreateSession(AcknowledgementMode.IndividualAcknowledge), connection.CreateSession(AcknowledgementMode.Transactional))
             destination = SessionUtil.GetDestination(session, strSendName)
             ShowOutput("Using destination: " & destination.ToString)
             producer = session.CreateProducer(destination)
@@ -63,16 +64,16 @@ Public Class Form1
             producer.DeliveryMode = message.NMSDeliveryMode
             producer.Priority = message.NMSPriority
             producer.RequestTimeout = tspTimeout
-            For intCnt = 1 To CInt(nudQty.Value)
+            For intCnt = 1 To CInt(nudSendQty.Value)
                 producer.Send(message)
                 ShowOutput("Message sent with Message Id: " & message.NMSMessageId)
+                If blnThrottled Then Threading.Thread.Sleep(CInt(nudSendThrottle.Value) * 1000)
             Next intCnt
-            Throw New System.Exception("Failed!")
-            session.Commit()
-            ShowOutput(CInt(nudQty.Value).ToString & " message(s) successfully sent to: " & destination.ToString)
+            If Not blnThrottled Then session.Commit()
+            ShowOutput(CInt(nudSendQty.Value).ToString & " message(s) successfully sent to: " & destination.ToString)
         Catch ex As Exception
             blnError = True
-            If session IsNot Nothing Then session.Rollback()
+            If session IsNot Nothing And Not blnThrottled Then session.Rollback()
             ShowOutput("An error occurred when sending message(s) to: " & strSendName)
             ShowOutput(ex.Message)
         Finally
@@ -115,6 +116,7 @@ Public Class Form1
             ShowOutput("########## MESSAGE RECEIVE ##########")
             ShowOutput(Now().ToString)
             ShowOutput("Connecting to: " & strReceiveServerUri)
+            Dim dtmReceiveUntil As DateTime = DateAdd(DateInterval.Minute, CDbl(nudReceiveDuration.Value), DateTime.Now)
             Dim tspTimeout As TimeSpan = TimeSpan.FromSeconds(10)
             Dim factory As IConnectionFactory = New NMSConnectionFactory(strReceiveServerUri)
             connection = factory.CreateConnection()
@@ -123,13 +125,24 @@ Public Class Form1
             ShowOutput("Using source: " & source.ToString)
             consumer = session.CreateConsumer(source)
             connection.Start()
-            Dim message As ITextMessage = consumer.Receive(tspTimeout)
-            If message Is Nothing Then
-                ShowOutput("No message received!")
+            If nudReceiveDuration.Value = 0 Then
+                Dim message As ITextMessage = consumer.Receive(tspTimeout)
+                If message Is Nothing Then
+                    ShowOutput("No message received!")
+                Else
+                    ShowOutput("Messsage with Message Id: " & message.NMSMessageId & " successfully received from: " & source.ToString)
+                    DisplayMessage(message)
+                    If chkReceiveAcknowledge.Checked Then message.Acknowledge()
+                End If
             Else
-                ShowOutput("Messsage with Message Id: " & message.NMSMessageId & " successfully received from: " & source.ToString)
-                DisplayMessage(message)
-                If chkAcknowledge.Checked Then message.Acknowledge()
+                While DateTime.Now <= dtmReceiveUntil
+                    Dim message As ITextMessage = consumer.Receive(tspTimeout)
+                    If message IsNot Nothing Then
+                        ShowOutput("Messsage with Message Id: " & message.NMSMessageId & " successfully received from: " & source.ToString)
+                        DisplayMessage(message)
+                        If chkReceiveAcknowledge.Checked Then message.Acknowledge()
+                    End If
+                End While
             End If
         Catch ex As Exception
             ShowOutput("An error occurred when receiving a message from: " & strReceiveName)
