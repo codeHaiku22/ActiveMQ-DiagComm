@@ -28,8 +28,12 @@ Partial Class Form1
         Me.cmdReceive = New System.Windows.Forms.Button()
         Me.nudSendQty = New System.Windows.Forms.NumericUpDown()
         Me.cmdClearOutput = New System.Windows.Forms.Button()
-        Me.txtSendQueue = New System.Windows.Forms.TextBox()
+        Me.txtSendDestination = New System.Windows.Forms.TextBox()
         Me.grpbxSend = New System.Windows.Forms.GroupBox()
+        Me.cmdSendReset = New System.Windows.Forms.Button()
+        Me.lblSendSeconds = New System.Windows.Forms.Label()
+        Me.lblSendThrottle = New System.Windows.Forms.Label()
+        Me.nudSendThrottle = New System.Windows.Forms.NumericUpDown()
         Me.txtSendPort = New System.Windows.Forms.TextBox()
         Me.lblSendPort = New System.Windows.Forms.Label()
         Me.lblSendQty = New System.Windows.Forms.Label()
@@ -37,14 +41,18 @@ Partial Class Form1
         Me.lblSendServer = New System.Windows.Forms.Label()
         Me.txtSendServer = New System.Windows.Forms.TextBox()
         Me.grpbxReceive = New System.Windows.Forms.GroupBox()
+        Me.cmdReceiveReset = New System.Windows.Forms.Button()
+        Me.lblReceiveMinutes = New System.Windows.Forms.Label()
+        Me.nudReceiveDuration = New System.Windows.Forms.NumericUpDown()
+        Me.lblReceiveDuration = New System.Windows.Forms.Label()
         Me.chkReceiveAcknowledge = New System.Windows.Forms.CheckBox()
         Me.txtReceivePort = New System.Windows.Forms.TextBox()
         Me.lblReceivePort = New System.Windows.Forms.Label()
         Me.lblReceiveQueue = New System.Windows.Forms.Label()
         Me.lblReceiveServer = New System.Windows.Forms.Label()
         Me.txtReceiveServer = New System.Windows.Forms.TextBox()
-        Me.txtReceiveQueue = New System.Windows.Forms.TextBox()
-        Me.cmdCopy = New System.Windows.Forms.Button()
+        Me.txtReceiveDestination = New System.Windows.Forms.TextBox()
+        Me.cmdCopyRight = New System.Windows.Forms.Button()
         Me.lblSend = New System.Windows.Forms.Label()
         Me.lblReceive = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
@@ -66,18 +74,13 @@ Partial Class Form1
         Me.lblCorrelationId = New System.Windows.Forms.Label()
         Me.txtCorrelationId = New System.Windows.Forms.TextBox()
         Me.txtMessageDetails = New System.Windows.Forms.TextBox()
-        Me.nudSendThrottle = New System.Windows.Forms.NumericUpDown()
-        Me.lblSendThrottle = New System.Windows.Forms.Label()
-        Me.lblSendSeconds = New System.Windows.Forms.Label()
-        Me.lblReceiveDuration = New System.Windows.Forms.Label()
-        Me.nudReceiveDuration = New System.Windows.Forms.NumericUpDown()
-        Me.lblReceiveMinutes = New System.Windows.Forms.Label()
+        Me.cmdCopyLeft = New System.Windows.Forms.Button()
         CType(Me.nudSendQty, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpbxSend.SuspendLayout()
-        Me.grpbxReceive.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
         CType(Me.nudSendThrottle, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.grpbxReceive.SuspendLayout()
         CType(Me.nudReceiveDuration, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'cmdSend
@@ -85,7 +88,7 @@ Partial Class Form1
         Me.cmdSend.Location = New System.Drawing.Point(356, 66)
         Me.cmdSend.Name = "cmdSend"
         Me.cmdSend.Size = New System.Drawing.Size(108, 25)
-        Me.cmdSend.TabIndex = 11
+        Me.cmdSend.TabIndex = 12
         Me.cmdSend.Text = "&Send"
         Me.cmdSend.UseVisualStyleBackColor = True
         '
@@ -97,14 +100,14 @@ Partial Class Form1
         Me.txtOutput.ReadOnly = True
         Me.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.txtOutput.Size = New System.Drawing.Size(983, 243)
-        Me.txtOutput.TabIndex = 6
+        Me.txtOutput.TabIndex = 7
         '
         'cmdReceive
         '
         Me.cmdReceive.Location = New System.Drawing.Point(356, 66)
         Me.cmdReceive.Name = "cmdReceive"
         Me.cmdReceive.Size = New System.Drawing.Size(108, 25)
-        Me.cmdReceive.TabIndex = 10
+        Me.cmdReceive.TabIndex = 11
         Me.cmdReceive.Text = "&Receive"
         Me.cmdReceive.UseVisualStyleBackColor = True
         '
@@ -121,19 +124,20 @@ Partial Class Form1
         Me.cmdClearOutput.Location = New System.Drawing.Point(921, 880)
         Me.cmdClearOutput.Name = "cmdClearOutput"
         Me.cmdClearOutput.Size = New System.Drawing.Size(75, 23)
-        Me.cmdClearOutput.TabIndex = 7
+        Me.cmdClearOutput.TabIndex = 8
         Me.cmdClearOutput.Text = "C&lear"
         Me.cmdClearOutput.UseVisualStyleBackColor = True
         '
-        'txtSendQueue
+        'txtSendDestination
         '
-        Me.txtSendQueue.Location = New System.Drawing.Point(75, 40)
-        Me.txtSendQueue.Name = "txtSendQueue"
-        Me.txtSendQueue.Size = New System.Drawing.Size(220, 20)
-        Me.txtSendQueue.TabIndex = 5
+        Me.txtSendDestination.Location = New System.Drawing.Point(75, 40)
+        Me.txtSendDestination.Name = "txtSendDestination"
+        Me.txtSendDestination.Size = New System.Drawing.Size(220, 20)
+        Me.txtSendDestination.TabIndex = 5
         '
         'grpbxSend
         '
+        Me.grpbxSend.Controls.Add(Me.cmdSendReset)
         Me.grpbxSend.Controls.Add(Me.lblSendSeconds)
         Me.grpbxSend.Controls.Add(Me.lblSendThrottle)
         Me.grpbxSend.Controls.Add(Me.nudSendThrottle)
@@ -143,7 +147,7 @@ Partial Class Form1
         Me.grpbxSend.Controls.Add(Me.lblSendQueue)
         Me.grpbxSend.Controls.Add(Me.lblSendServer)
         Me.grpbxSend.Controls.Add(Me.txtSendServer)
-        Me.grpbxSend.Controls.Add(Me.txtSendQueue)
+        Me.grpbxSend.Controls.Add(Me.txtSendDestination)
         Me.grpbxSend.Controls.Add(Me.nudSendQty)
         Me.grpbxSend.Controls.Add(Me.cmdSend)
         Me.grpbxSend.Location = New System.Drawing.Point(13, 515)
@@ -151,6 +155,42 @@ Partial Class Form1
         Me.grpbxSend.Size = New System.Drawing.Size(470, 100)
         Me.grpbxSend.TabIndex = 3
         Me.grpbxSend.TabStop = False
+        '
+        'cmdSendReset
+        '
+        Me.cmdSendReset.Location = New System.Drawing.Point(307, 66)
+        Me.cmdSendReset.Name = "cmdSendReset"
+        Me.cmdSendReset.Size = New System.Drawing.Size(43, 25)
+        Me.cmdSendReset.TabIndex = 11
+        Me.cmdSendReset.Text = "Reset"
+        Me.cmdSendReset.UseVisualStyleBackColor = True
+        '
+        'lblSendSeconds
+        '
+        Me.lblSendSeconds.AutoSize = True
+        Me.lblSendSeconds.Location = New System.Drawing.Point(189, 68)
+        Me.lblSendSeconds.Name = "lblSendSeconds"
+        Me.lblSendSeconds.Size = New System.Drawing.Size(47, 13)
+        Me.lblSendSeconds.TabIndex = 10
+        Me.lblSendSeconds.Text = "seconds"
+        '
+        'lblSendThrottle
+        '
+        Me.lblSendThrottle.AutoSize = True
+        Me.lblSendThrottle.Location = New System.Drawing.Point(22, 68)
+        Me.lblSendThrottle.Name = "lblSendThrottle"
+        Me.lblSendThrottle.Size = New System.Drawing.Size(46, 13)
+        Me.lblSendThrottle.TabIndex = 8
+        Me.lblSendThrottle.Text = "Throttle:"
+        '
+        'nudSendThrottle
+        '
+        Me.nudSendThrottle.Location = New System.Drawing.Point(75, 66)
+        Me.nudSendThrottle.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
+        Me.nudSendThrottle.Name = "nudSendThrottle"
+        Me.nudSendThrottle.Size = New System.Drawing.Size(108, 20)
+        Me.nudSendThrottle.TabIndex = 9
+        Me.nudSendThrottle.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtSendPort
         '
@@ -204,6 +244,7 @@ Partial Class Form1
         '
         'grpbxReceive
         '
+        Me.grpbxReceive.Controls.Add(Me.cmdReceiveReset)
         Me.grpbxReceive.Controls.Add(Me.lblReceiveMinutes)
         Me.grpbxReceive.Controls.Add(Me.nudReceiveDuration)
         Me.grpbxReceive.Controls.Add(Me.lblReceiveDuration)
@@ -214,12 +255,48 @@ Partial Class Form1
         Me.grpbxReceive.Controls.Add(Me.lblReceiveServer)
         Me.grpbxReceive.Controls.Add(Me.txtReceiveServer)
         Me.grpbxReceive.Controls.Add(Me.cmdReceive)
-        Me.grpbxReceive.Controls.Add(Me.txtReceiveQueue)
+        Me.grpbxReceive.Controls.Add(Me.txtReceiveDestination)
         Me.grpbxReceive.Location = New System.Drawing.Point(525, 515)
         Me.grpbxReceive.Name = "grpbxReceive"
         Me.grpbxReceive.Size = New System.Drawing.Size(470, 100)
-        Me.grpbxReceive.TabIndex = 5
+        Me.grpbxReceive.TabIndex = 6
         Me.grpbxReceive.TabStop = False
+        '
+        'cmdReceiveReset
+        '
+        Me.cmdReceiveReset.Location = New System.Drawing.Point(307, 66)
+        Me.cmdReceiveReset.Name = "cmdReceiveReset"
+        Me.cmdReceiveReset.Size = New System.Drawing.Size(43, 25)
+        Me.cmdReceiveReset.TabIndex = 10
+        Me.cmdReceiveReset.Text = "Reset"
+        Me.cmdReceiveReset.UseVisualStyleBackColor = True
+        '
+        'lblReceiveMinutes
+        '
+        Me.lblReceiveMinutes.AutoSize = True
+        Me.lblReceiveMinutes.Location = New System.Drawing.Point(189, 68)
+        Me.lblReceiveMinutes.Name = "lblReceiveMinutes"
+        Me.lblReceiveMinutes.Size = New System.Drawing.Size(43, 13)
+        Me.lblReceiveMinutes.TabIndex = 9
+        Me.lblReceiveMinutes.Text = "minutes"
+        '
+        'nudReceiveDuration
+        '
+        Me.nudReceiveDuration.Location = New System.Drawing.Point(75, 67)
+        Me.nudReceiveDuration.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
+        Me.nudReceiveDuration.Name = "nudReceiveDuration"
+        Me.nudReceiveDuration.Size = New System.Drawing.Size(108, 20)
+        Me.nudReceiveDuration.TabIndex = 8
+        Me.nudReceiveDuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'lblReceiveDuration
+        '
+        Me.lblReceiveDuration.AutoSize = True
+        Me.lblReceiveDuration.Location = New System.Drawing.Point(19, 68)
+        Me.lblReceiveDuration.Name = "lblReceiveDuration"
+        Me.lblReceiveDuration.Size = New System.Drawing.Size(50, 13)
+        Me.lblReceiveDuration.TabIndex = 7
+        Me.lblReceiveDuration.Text = "Duration:"
         '
         'chkReceiveAcknowledge
         '
@@ -272,21 +349,21 @@ Partial Class Form1
         Me.txtReceiveServer.Size = New System.Drawing.Size(220, 20)
         Me.txtReceiveServer.TabIndex = 1
         '
-        'txtReceiveQueue
+        'txtReceiveDestination
         '
-        Me.txtReceiveQueue.Location = New System.Drawing.Point(75, 41)
-        Me.txtReceiveQueue.Name = "txtReceiveQueue"
-        Me.txtReceiveQueue.Size = New System.Drawing.Size(220, 20)
-        Me.txtReceiveQueue.TabIndex = 5
+        Me.txtReceiveDestination.Location = New System.Drawing.Point(75, 41)
+        Me.txtReceiveDestination.Name = "txtReceiveDestination"
+        Me.txtReceiveDestination.Size = New System.Drawing.Size(220, 20)
+        Me.txtReceiveDestination.TabIndex = 5
         '
-        'cmdCopy
+        'cmdCopyRight
         '
-        Me.cmdCopy.Location = New System.Drawing.Point(493, 532)
-        Me.cmdCopy.Name = "cmdCopy"
-        Me.cmdCopy.Size = New System.Drawing.Size(21, 39)
-        Me.cmdCopy.TabIndex = 4
-        Me.cmdCopy.Text = ">"
-        Me.cmdCopy.UseVisualStyleBackColor = True
+        Me.cmdCopyRight.Location = New System.Drawing.Point(493, 532)
+        Me.cmdCopyRight.Name = "cmdCopyRight"
+        Me.cmdCopyRight.Size = New System.Drawing.Size(21, 30)
+        Me.cmdCopyRight.TabIndex = 4
+        Me.cmdCopyRight.Text = ">"
+        Me.cmdCopyRight.UseVisualStyleBackColor = True
         '
         'lblSend
         '
@@ -303,7 +380,7 @@ Partial Class Form1
         Me.lblReceive.Location = New System.Drawing.Point(531, 504)
         Me.lblReceive.Name = "lblReceive"
         Me.lblReceive.Size = New System.Drawing.Size(47, 13)
-        Me.lblReceive.TabIndex = 5
+        Me.lblReceive.TabIndex = 6
         Me.lblReceive.Text = "Receive"
         '
         'GroupBox3
@@ -489,69 +566,25 @@ Partial Class Form1
         Me.txtMessageDetails.Size = New System.Drawing.Size(967, 267)
         Me.txtMessageDetails.TabIndex = 16
         '
-        'nudSendThrottle
+        'cmdCopyLeft
         '
-        Me.nudSendThrottle.Location = New System.Drawing.Point(75, 66)
-        Me.nudSendThrottle.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
-        Me.nudSendThrottle.Name = "nudSendThrottle"
-        Me.nudSendThrottle.Size = New System.Drawing.Size(108, 20)
-        Me.nudSendThrottle.TabIndex = 9
-        Me.nudSendThrottle.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'lblSendThrottle
-        '
-        Me.lblSendThrottle.AutoSize = True
-        Me.lblSendThrottle.Location = New System.Drawing.Point(22, 68)
-        Me.lblSendThrottle.Name = "lblSendThrottle"
-        Me.lblSendThrottle.Size = New System.Drawing.Size(46, 13)
-        Me.lblSendThrottle.TabIndex = 8
-        Me.lblSendThrottle.Text = "Throttle:"
-        '
-        'lblSendSeconds
-        '
-        Me.lblSendSeconds.AutoSize = True
-        Me.lblSendSeconds.Location = New System.Drawing.Point(189, 68)
-        Me.lblSendSeconds.Name = "lblSendSeconds"
-        Me.lblSendSeconds.Size = New System.Drawing.Size(47, 13)
-        Me.lblSendSeconds.TabIndex = 10
-        Me.lblSendSeconds.Text = "seconds"
-        '
-        'lblReceiveDuration
-        '
-        Me.lblReceiveDuration.AutoSize = True
-        Me.lblReceiveDuration.Location = New System.Drawing.Point(19, 68)
-        Me.lblReceiveDuration.Name = "lblReceiveDuration"
-        Me.lblReceiveDuration.Size = New System.Drawing.Size(50, 13)
-        Me.lblReceiveDuration.TabIndex = 7
-        Me.lblReceiveDuration.Text = "Duration:"
-        '
-        'nudReceiveDuration
-        '
-        Me.nudReceiveDuration.Location = New System.Drawing.Point(75, 67)
-        Me.nudReceiveDuration.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
-        Me.nudReceiveDuration.Name = "nudReceiveDuration"
-        Me.nudReceiveDuration.Size = New System.Drawing.Size(108, 20)
-        Me.nudReceiveDuration.TabIndex = 8
-        Me.nudReceiveDuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'lblReceiveMinutes
-        '
-        Me.lblReceiveMinutes.AutoSize = True
-        Me.lblReceiveMinutes.Location = New System.Drawing.Point(189, 68)
-        Me.lblReceiveMinutes.Name = "lblReceiveMinutes"
-        Me.lblReceiveMinutes.Size = New System.Drawing.Size(43, 13)
-        Me.lblReceiveMinutes.TabIndex = 9
-        Me.lblReceiveMinutes.Text = "minutes"
+        Me.cmdCopyLeft.Location = New System.Drawing.Point(493, 571)
+        Me.cmdCopyLeft.Name = "cmdCopyLeft"
+        Me.cmdCopyLeft.Size = New System.Drawing.Size(21, 30)
+        Me.cmdCopyLeft.TabIndex = 5
+        Me.cmdCopyLeft.Text = "<"
+        Me.cmdCopyLeft.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1008, 911)
+        Me.Controls.Add(Me.cmdCopyLeft)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.lblReceive)
         Me.Controls.Add(Me.lblSend)
-        Me.Controls.Add(Me.cmdCopy)
+        Me.Controls.Add(Me.cmdCopyRight)
         Me.Controls.Add(Me.grpbxReceive)
         Me.Controls.Add(Me.grpbxSend)
         Me.Controls.Add(Me.cmdClearOutput)
@@ -563,12 +596,12 @@ Partial Class Form1
         CType(Me.nudSendQty, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpbxSend.ResumeLayout(False)
         Me.grpbxSend.PerformLayout()
+        CType(Me.nudSendThrottle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpbxReceive.ResumeLayout(False)
         Me.grpbxReceive.PerformLayout()
+        CType(Me.nudReceiveDuration, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
-        CType(Me.nudSendThrottle, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.nudReceiveDuration, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -579,7 +612,7 @@ Partial Class Form1
     Friend WithEvents cmdReceive As Button
     Friend WithEvents nudSendQty As NumericUpDown
     Friend WithEvents cmdClearOutput As Button
-    Friend WithEvents txtSendQueue As TextBox
+    Friend WithEvents txtSendDestination As TextBox
     Friend WithEvents grpbxSend As GroupBox
     Friend WithEvents lblSendQty As Label
     Friend WithEvents lblSendQueue As Label
@@ -589,8 +622,8 @@ Partial Class Form1
     Friend WithEvents lblReceiveQueue As Label
     Friend WithEvents lblReceiveServer As Label
     Friend WithEvents txtReceiveServer As TextBox
-    Friend WithEvents txtReceiveQueue As TextBox
-    Friend WithEvents cmdCopy As Button
+    Friend WithEvents txtReceiveDestination As TextBox
+    Friend WithEvents cmdCopyRight As Button
     Friend WithEvents lblSend As Label
     Friend WithEvents lblReceive As Label
     Friend WithEvents txtSendPort As TextBox
@@ -623,4 +656,7 @@ Partial Class Form1
     Friend WithEvents lblReceiveDuration As Label
     Friend WithEvents lblReceiveMinutes As Label
     Friend WithEvents nudReceiveDuration As NumericUpDown
+    Friend WithEvents cmdCopyLeft As Button
+    Friend WithEvents cmdSendReset As Button
+    Friend WithEvents cmdReceiveReset As Button
 End Class

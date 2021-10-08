@@ -34,12 +34,12 @@ Public Class Form1
     Private Sub cmdSend_Click(sender As Object, e As EventArgs) Handles cmdSend.Click
 
         If txtSendServer.Text.Trim = "" Then Exit Sub
-        If txtSendQueue.Text.Trim = "" Then Exit Sub
+        If txtSendDestination.Text.Trim = "" Then Exit Sub
         If txtSendPort.Text.Trim = "" Or (Not IsNumeric(txtSendPort.Text.Trim)) Then Exit Sub
         If CInt(nudSendQty.Value) <= 0 Then Exit Sub
 
         Dim strSendServerUri As String = "tcp://" & txtSendServer.Text.Trim & ":" & txtSendPort.Text.Trim
-        Dim strSendName As String = txtSendQueue.Text.Trim
+        Dim strSendName As String = txtSendDestination.Text.Trim
         Dim blnThrottled As Boolean = (nudSendThrottle.Value > 0)
         Dim connection As IConnection
         Dim session As ISession
@@ -91,21 +91,46 @@ Public Class Form1
         End Try
 
     End Sub
-    Private Sub cmdCopy_Click(sender As Object, e As EventArgs) Handles cmdCopy.Click
+    Private Sub cmdSendReset_Click(sender As Object, e As EventArgs) Handles cmdSendReset.Click
+
+        txtSendServer.Text = ""
+        txtSendDestination.Text = ""
+        txtSendPort.Text = "61616"
+        nudSendQty.Value = 0
+        nudSendThrottle.Value = 0
+
+    End Sub
+    Private Sub cmdReceiveReset_Click(sender As Object, e As EventArgs) Handles cmdReceiveReset.Click
+
+        txtReceiveServer.Text = ""
+        txtReceiveDestination.Text = ""
+        txtReceivePort.Text = "61616"
+        chkReceiveAcknowledge.Checked = False
+        nudReceiveDuration.Value = 0
+
+    End Sub
+    Private Sub cmdCopyRight_Click(sender As Object, e As EventArgs) Handles cmdCopyRight.Click
 
         txtReceiveServer.Text = txtSendServer.Text
-        txtReceiveQueue.Text = txtSendQueue.Text
+        txtReceiveDestination.Text = txtSendDestination.Text
         txtReceivePort.Text = txtSendPort.Text
+
+    End Sub
+    Private Sub cmdCopyLeft_Click(sender As Object, e As EventArgs) Handles cmdCopyLeft.Click
+
+        txtSendServer.Text = txtReceiveServer.Text
+        txtSendDestination.Text = txtReceiveDestination.Text
+        txtSendPort.Text = txtReceivePort.Text
 
     End Sub
     Private Sub cmdReceive_Click(sender As Object, e As EventArgs) Handles cmdReceive.Click
 
         If txtReceiveServer.Text.Trim = "" Then Exit Sub
-        If txtReceiveQueue.Text.Trim = "" Then Exit Sub
+        If txtReceiveDestination.Text.Trim = "" Then Exit Sub
         If txtReceivePort.Text.Trim = "" Or (Not IsNumeric(txtReceivePort.Text.Trim)) Then Exit Sub
 
         Dim strReceiveServerUri As String = "tcp://" & txtReceiveServer.Text.Trim & ":" & txtReceivePort.Text.Trim
-        Dim strReceiveName As String = txtReceiveQueue.Text.Trim
+        Dim strReceiveName As String = txtReceiveDestination.Text.Trim
 
         Dim connection As IConnection
         Dim session As ISession
