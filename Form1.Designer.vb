@@ -75,6 +75,14 @@ Partial Class Form1
         Me.txtCorrelationId = New System.Windows.Forms.TextBox()
         Me.txtMessageDetails = New System.Windows.Forms.TextBox()
         Me.cmdCopyLeft = New System.Windows.Forms.Button()
+        Me.txtSendUser = New System.Windows.Forms.TextBox()
+        Me.lblSendUser = New System.Windows.Forms.Label()
+        Me.lblSendPassword = New System.Windows.Forms.Label()
+        Me.txtSendPassword = New System.Windows.Forms.TextBox()
+        Me.txtReceivePassword = New System.Windows.Forms.TextBox()
+        Me.lblReceivePassword = New System.Windows.Forms.Label()
+        Me.lblReceiveUser = New System.Windows.Forms.Label()
+        Me.txtReceiveUser = New System.Windows.Forms.TextBox()
         CType(Me.nudSendQty, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpbxSend.SuspendLayout()
         CType(Me.nudSendThrottle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,38 +93,39 @@ Partial Class Form1
         '
         'cmdSend
         '
-        Me.cmdSend.Location = New System.Drawing.Point(356, 66)
+        Me.cmdSend.Location = New System.Drawing.Point(356, 92)
         Me.cmdSend.Name = "cmdSend"
         Me.cmdSend.Size = New System.Drawing.Size(108, 25)
-        Me.cmdSend.TabIndex = 12
+        Me.cmdSend.TabIndex = 16
         Me.cmdSend.Text = "&Send"
         Me.cmdSend.UseVisualStyleBackColor = True
         '
         'txtOutput
         '
-        Me.txtOutput.Location = New System.Drawing.Point(13, 631)
+        Me.txtOutput.Location = New System.Drawing.Point(13, 649)
         Me.txtOutput.Multiline = True
         Me.txtOutput.Name = "txtOutput"
         Me.txtOutput.ReadOnly = True
         Me.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.txtOutput.Size = New System.Drawing.Size(983, 243)
+        Me.txtOutput.Size = New System.Drawing.Size(983, 225)
         Me.txtOutput.TabIndex = 7
         '
         'cmdReceive
         '
-        Me.cmdReceive.Location = New System.Drawing.Point(356, 66)
+        Me.cmdReceive.Location = New System.Drawing.Point(356, 92)
         Me.cmdReceive.Name = "cmdReceive"
         Me.cmdReceive.Size = New System.Drawing.Size(108, 25)
-        Me.cmdReceive.TabIndex = 11
+        Me.cmdReceive.TabIndex = 15
         Me.cmdReceive.Text = "&Receive"
         Me.cmdReceive.UseVisualStyleBackColor = True
         '
         'nudSendQty
         '
-        Me.nudSendQty.Location = New System.Drawing.Point(356, 41)
+        Me.nudSendQty.Location = New System.Drawing.Point(356, 67)
+        Me.nudSendQty.Maximum = New Decimal(New Integer() {999999, 0, 0, 0})
         Me.nudSendQty.Name = "nudSendQty"
         Me.nudSendQty.Size = New System.Drawing.Size(108, 20)
-        Me.nudSendQty.TabIndex = 7
+        Me.nudSendQty.TabIndex = 11
         Me.nudSendQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'cmdClearOutput
@@ -130,13 +139,17 @@ Partial Class Form1
         '
         'txtSendDestination
         '
-        Me.txtSendDestination.Location = New System.Drawing.Point(75, 40)
+        Me.txtSendDestination.Location = New System.Drawing.Point(75, 66)
         Me.txtSendDestination.Name = "txtSendDestination"
         Me.txtSendDestination.Size = New System.Drawing.Size(220, 20)
-        Me.txtSendDestination.TabIndex = 5
+        Me.txtSendDestination.TabIndex = 9
         '
         'grpbxSend
         '
+        Me.grpbxSend.Controls.Add(Me.txtSendPassword)
+        Me.grpbxSend.Controls.Add(Me.lblSendPassword)
+        Me.grpbxSend.Controls.Add(Me.lblSendUser)
+        Me.grpbxSend.Controls.Add(Me.txtSendUser)
         Me.grpbxSend.Controls.Add(Me.cmdSendReset)
         Me.grpbxSend.Controls.Add(Me.lblSendSeconds)
         Me.grpbxSend.Controls.Add(Me.lblSendThrottle)
@@ -150,102 +163,106 @@ Partial Class Form1
         Me.grpbxSend.Controls.Add(Me.txtSendDestination)
         Me.grpbxSend.Controls.Add(Me.nudSendQty)
         Me.grpbxSend.Controls.Add(Me.cmdSend)
-        Me.grpbxSend.Location = New System.Drawing.Point(13, 515)
+        Me.grpbxSend.Location = New System.Drawing.Point(13, 505)
         Me.grpbxSend.Name = "grpbxSend"
-        Me.grpbxSend.Size = New System.Drawing.Size(470, 100)
+        Me.grpbxSend.Size = New System.Drawing.Size(470, 125)
         Me.grpbxSend.TabIndex = 3
         Me.grpbxSend.TabStop = False
         '
         'cmdSendReset
         '
-        Me.cmdSendReset.Location = New System.Drawing.Point(307, 66)
+        Me.cmdSendReset.Location = New System.Drawing.Point(307, 92)
         Me.cmdSendReset.Name = "cmdSendReset"
         Me.cmdSendReset.Size = New System.Drawing.Size(43, 25)
-        Me.cmdSendReset.TabIndex = 11
+        Me.cmdSendReset.TabIndex = 15
         Me.cmdSendReset.Text = "Reset"
         Me.cmdSendReset.UseVisualStyleBackColor = True
         '
         'lblSendSeconds
         '
         Me.lblSendSeconds.AutoSize = True
-        Me.lblSendSeconds.Location = New System.Drawing.Point(189, 68)
+        Me.lblSendSeconds.Location = New System.Drawing.Point(189, 94)
         Me.lblSendSeconds.Name = "lblSendSeconds"
         Me.lblSendSeconds.Size = New System.Drawing.Size(47, 13)
-        Me.lblSendSeconds.TabIndex = 10
+        Me.lblSendSeconds.TabIndex = 14
         Me.lblSendSeconds.Text = "seconds"
         '
         'lblSendThrottle
         '
         Me.lblSendThrottle.AutoSize = True
-        Me.lblSendThrottle.Location = New System.Drawing.Point(22, 68)
+        Me.lblSendThrottle.Location = New System.Drawing.Point(22, 94)
         Me.lblSendThrottle.Name = "lblSendThrottle"
         Me.lblSendThrottle.Size = New System.Drawing.Size(46, 13)
-        Me.lblSendThrottle.TabIndex = 8
+        Me.lblSendThrottle.TabIndex = 12
         Me.lblSendThrottle.Text = "Throttle:"
         '
         'nudSendThrottle
         '
-        Me.nudSendThrottle.Location = New System.Drawing.Point(75, 66)
+        Me.nudSendThrottle.Location = New System.Drawing.Point(75, 92)
         Me.nudSendThrottle.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
         Me.nudSendThrottle.Name = "nudSendThrottle"
         Me.nudSendThrottle.Size = New System.Drawing.Size(108, 20)
-        Me.nudSendThrottle.TabIndex = 9
+        Me.nudSendThrottle.TabIndex = 13
         Me.nudSendThrottle.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtSendPort
         '
-        Me.txtSendPort.Location = New System.Drawing.Point(356, 13)
+        Me.txtSendPort.Location = New System.Drawing.Point(356, 39)
         Me.txtSendPort.Name = "txtSendPort"
         Me.txtSendPort.Size = New System.Drawing.Size(108, 20)
-        Me.txtSendPort.TabIndex = 3
+        Me.txtSendPort.TabIndex = 7
         '
         'lblSendPort
         '
         Me.lblSendPort.AutoSize = True
-        Me.lblSendPort.Location = New System.Drawing.Point(321, 16)
+        Me.lblSendPort.Location = New System.Drawing.Point(321, 42)
         Me.lblSendPort.Name = "lblSendPort"
         Me.lblSendPort.Size = New System.Drawing.Size(29, 13)
-        Me.lblSendPort.TabIndex = 2
+        Me.lblSendPort.TabIndex = 6
         Me.lblSendPort.Text = "Port:"
         '
         'lblSendQty
         '
         Me.lblSendQty.AutoSize = True
-        Me.lblSendQty.Location = New System.Drawing.Point(304, 43)
+        Me.lblSendQty.Location = New System.Drawing.Point(304, 69)
         Me.lblSendQty.Name = "lblSendQty"
         Me.lblSendQty.Size = New System.Drawing.Size(49, 13)
-        Me.lblSendQty.TabIndex = 6
+        Me.lblSendQty.TabIndex = 10
         Me.lblSendQty.Text = "Quantity:"
         '
         'lblSendQueue
         '
         Me.lblSendQueue.AutoSize = True
-        Me.lblSendQueue.Location = New System.Drawing.Point(6, 43)
+        Me.lblSendQueue.Location = New System.Drawing.Point(6, 69)
         Me.lblSendQueue.Name = "lblSendQueue"
         Me.lblSendQueue.Size = New System.Drawing.Size(63, 13)
-        Me.lblSendQueue.TabIndex = 4
+        Me.lblSendQueue.TabIndex = 8
         Me.lblSendQueue.Text = "Destination:"
         '
         'lblSendServer
         '
         Me.lblSendServer.AutoSize = True
-        Me.lblSendServer.Location = New System.Drawing.Point(13, 17)
+        Me.lblSendServer.Location = New System.Drawing.Point(13, 43)
         Me.lblSendServer.Name = "lblSendServer"
         Me.lblSendServer.Size = New System.Drawing.Size(56, 13)
-        Me.lblSendServer.TabIndex = 0
+        Me.lblSendServer.TabIndex = 4
         Me.lblSendServer.Text = "Server/IP:"
         '
         'txtSendServer
         '
-        Me.txtSendServer.Location = New System.Drawing.Point(75, 13)
+        Me.txtSendServer.Location = New System.Drawing.Point(75, 39)
         Me.txtSendServer.Name = "txtSendServer"
         Me.txtSendServer.Size = New System.Drawing.Size(220, 20)
-        Me.txtSendServer.TabIndex = 1
+        Me.txtSendServer.TabIndex = 5
         '
         'grpbxReceive
         '
+        Me.grpbxReceive.Controls.Add(Me.txtReceivePassword)
+        Me.grpbxReceive.Controls.Add(Me.lblReceivePassword)
         Me.grpbxReceive.Controls.Add(Me.cmdReceiveReset)
+        Me.grpbxReceive.Controls.Add(Me.lblReceiveUser)
         Me.grpbxReceive.Controls.Add(Me.lblReceiveMinutes)
+        Me.grpbxReceive.Controls.Add(Me.txtReceiveUser)
         Me.grpbxReceive.Controls.Add(Me.nudReceiveDuration)
         Me.grpbxReceive.Controls.Add(Me.lblReceiveDuration)
         Me.grpbxReceive.Controls.Add(Me.chkReceiveAcknowledge)
@@ -256,111 +273,111 @@ Partial Class Form1
         Me.grpbxReceive.Controls.Add(Me.txtReceiveServer)
         Me.grpbxReceive.Controls.Add(Me.cmdReceive)
         Me.grpbxReceive.Controls.Add(Me.txtReceiveDestination)
-        Me.grpbxReceive.Location = New System.Drawing.Point(525, 515)
+        Me.grpbxReceive.Location = New System.Drawing.Point(525, 505)
         Me.grpbxReceive.Name = "grpbxReceive"
-        Me.grpbxReceive.Size = New System.Drawing.Size(470, 100)
+        Me.grpbxReceive.Size = New System.Drawing.Size(470, 125)
         Me.grpbxReceive.TabIndex = 6
         Me.grpbxReceive.TabStop = False
         '
         'cmdReceiveReset
         '
-        Me.cmdReceiveReset.Location = New System.Drawing.Point(307, 66)
+        Me.cmdReceiveReset.Location = New System.Drawing.Point(307, 92)
         Me.cmdReceiveReset.Name = "cmdReceiveReset"
         Me.cmdReceiveReset.Size = New System.Drawing.Size(43, 25)
-        Me.cmdReceiveReset.TabIndex = 10
+        Me.cmdReceiveReset.TabIndex = 14
         Me.cmdReceiveReset.Text = "Reset"
         Me.cmdReceiveReset.UseVisualStyleBackColor = True
         '
         'lblReceiveMinutes
         '
         Me.lblReceiveMinutes.AutoSize = True
-        Me.lblReceiveMinutes.Location = New System.Drawing.Point(189, 68)
+        Me.lblReceiveMinutes.Location = New System.Drawing.Point(189, 94)
         Me.lblReceiveMinutes.Name = "lblReceiveMinutes"
         Me.lblReceiveMinutes.Size = New System.Drawing.Size(43, 13)
-        Me.lblReceiveMinutes.TabIndex = 9
+        Me.lblReceiveMinutes.TabIndex = 13
         Me.lblReceiveMinutes.Text = "minutes"
         '
         'nudReceiveDuration
         '
-        Me.nudReceiveDuration.Location = New System.Drawing.Point(75, 67)
+        Me.nudReceiveDuration.Location = New System.Drawing.Point(75, 92)
         Me.nudReceiveDuration.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
         Me.nudReceiveDuration.Name = "nudReceiveDuration"
         Me.nudReceiveDuration.Size = New System.Drawing.Size(108, 20)
-        Me.nudReceiveDuration.TabIndex = 8
+        Me.nudReceiveDuration.TabIndex = 12
         Me.nudReceiveDuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lblReceiveDuration
         '
         Me.lblReceiveDuration.AutoSize = True
-        Me.lblReceiveDuration.Location = New System.Drawing.Point(19, 68)
+        Me.lblReceiveDuration.Location = New System.Drawing.Point(19, 94)
         Me.lblReceiveDuration.Name = "lblReceiveDuration"
         Me.lblReceiveDuration.Size = New System.Drawing.Size(50, 13)
-        Me.lblReceiveDuration.TabIndex = 7
+        Me.lblReceiveDuration.TabIndex = 11
         Me.lblReceiveDuration.Text = "Duration:"
         '
         'chkReceiveAcknowledge
         '
         Me.chkReceiveAcknowledge.AutoSize = True
-        Me.chkReceiveAcknowledge.Location = New System.Drawing.Point(324, 42)
+        Me.chkReceiveAcknowledge.Location = New System.Drawing.Point(322, 68)
         Me.chkReceiveAcknowledge.Name = "chkReceiveAcknowledge"
         Me.chkReceiveAcknowledge.Size = New System.Drawing.Size(142, 17)
-        Me.chkReceiveAcknowledge.TabIndex = 6
+        Me.chkReceiveAcknowledge.TabIndex = 10
         Me.chkReceiveAcknowledge.Text = "Acknowledge Messsage"
         Me.chkReceiveAcknowledge.UseVisualStyleBackColor = True
         '
         'txtReceivePort
         '
-        Me.txtReceivePort.Location = New System.Drawing.Point(356, 14)
+        Me.txtReceivePort.Location = New System.Drawing.Point(356, 39)
         Me.txtReceivePort.Name = "txtReceivePort"
         Me.txtReceivePort.Size = New System.Drawing.Size(108, 20)
-        Me.txtReceivePort.TabIndex = 3
+        Me.txtReceivePort.TabIndex = 7
         '
         'lblReceivePort
         '
         Me.lblReceivePort.AutoSize = True
-        Me.lblReceivePort.Location = New System.Drawing.Point(321, 17)
+        Me.lblReceivePort.Location = New System.Drawing.Point(321, 43)
         Me.lblReceivePort.Name = "lblReceivePort"
         Me.lblReceivePort.Size = New System.Drawing.Size(29, 13)
-        Me.lblReceivePort.TabIndex = 2
+        Me.lblReceivePort.TabIndex = 6
         Me.lblReceivePort.Text = "Port:"
         '
         'lblReceiveQueue
         '
         Me.lblReceiveQueue.AutoSize = True
-        Me.lblReceiveQueue.Location = New System.Drawing.Point(25, 43)
+        Me.lblReceiveQueue.Location = New System.Drawing.Point(25, 69)
         Me.lblReceiveQueue.Name = "lblReceiveQueue"
         Me.lblReceiveQueue.Size = New System.Drawing.Size(44, 13)
-        Me.lblReceiveQueue.TabIndex = 4
+        Me.lblReceiveQueue.TabIndex = 8
         Me.lblReceiveQueue.Text = "Source:"
         '
         'lblReceiveServer
         '
         Me.lblReceiveServer.AutoSize = True
-        Me.lblReceiveServer.Location = New System.Drawing.Point(13, 16)
+        Me.lblReceiveServer.Location = New System.Drawing.Point(13, 43)
         Me.lblReceiveServer.Name = "lblReceiveServer"
         Me.lblReceiveServer.Size = New System.Drawing.Size(56, 13)
-        Me.lblReceiveServer.TabIndex = 0
+        Me.lblReceiveServer.TabIndex = 4
         Me.lblReceiveServer.Text = "Server/IP:"
         '
         'txtReceiveServer
         '
-        Me.txtReceiveServer.Location = New System.Drawing.Point(75, 14)
+        Me.txtReceiveServer.Location = New System.Drawing.Point(75, 39)
         Me.txtReceiveServer.Name = "txtReceiveServer"
         Me.txtReceiveServer.Size = New System.Drawing.Size(220, 20)
-        Me.txtReceiveServer.TabIndex = 1
+        Me.txtReceiveServer.TabIndex = 5
         '
         'txtReceiveDestination
         '
-        Me.txtReceiveDestination.Location = New System.Drawing.Point(75, 41)
+        Me.txtReceiveDestination.Location = New System.Drawing.Point(75, 66)
         Me.txtReceiveDestination.Name = "txtReceiveDestination"
         Me.txtReceiveDestination.Size = New System.Drawing.Size(220, 20)
-        Me.txtReceiveDestination.TabIndex = 5
+        Me.txtReceiveDestination.TabIndex = 9
         '
         'cmdCopyRight
         '
-        Me.cmdCopyRight.Location = New System.Drawing.Point(493, 532)
+        Me.cmdCopyRight.Location = New System.Drawing.Point(491, 525)
         Me.cmdCopyRight.Name = "cmdCopyRight"
-        Me.cmdCopyRight.Size = New System.Drawing.Size(21, 30)
+        Me.cmdCopyRight.Size = New System.Drawing.Size(25, 40)
         Me.cmdCopyRight.TabIndex = 4
         Me.cmdCopyRight.Text = ">"
         Me.cmdCopyRight.UseVisualStyleBackColor = True
@@ -368,7 +385,7 @@ Partial Class Form1
         'lblSend
         '
         Me.lblSend.AutoSize = True
-        Me.lblSend.Location = New System.Drawing.Point(19, 504)
+        Me.lblSend.Location = New System.Drawing.Point(13, 496)
         Me.lblSend.Name = "lblSend"
         Me.lblSend.Size = New System.Drawing.Size(32, 13)
         Me.lblSend.TabIndex = 3
@@ -377,7 +394,7 @@ Partial Class Form1
         'lblReceive
         '
         Me.lblReceive.AutoSize = True
-        Me.lblReceive.Location = New System.Drawing.Point(531, 504)
+        Me.lblReceive.Location = New System.Drawing.Point(525, 496)
         Me.lblReceive.Name = "lblReceive"
         Me.lblReceive.Size = New System.Drawing.Size(47, 13)
         Me.lblReceive.TabIndex = 6
@@ -405,14 +422,14 @@ Partial Class Form1
         Me.GroupBox3.Controls.Add(Me.txtMessageDetails)
         Me.GroupBox3.Location = New System.Drawing.Point(13, 12)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(982, 480)
+        Me.GroupBox3.Size = New System.Drawing.Size(982, 465)
         Me.GroupBox3.TabIndex = 0
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Message"
         '
         'cmdClearMessageFields
         '
-        Me.cmdClearMessageFields.Location = New System.Drawing.Point(901, 451)
+        Me.cmdClearMessageFields.Location = New System.Drawing.Point(901, 434)
         Me.cmdClearMessageFields.Name = "cmdClearMessageFields"
         Me.cmdClearMessageFields.Size = New System.Drawing.Size(75, 23)
         Me.cmdClearMessageFields.TabIndex = 17
@@ -563,17 +580,83 @@ Partial Class Form1
         Me.txtMessageDetails.Multiline = True
         Me.txtMessageDetails.Name = "txtMessageDetails"
         Me.txtMessageDetails.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.txtMessageDetails.Size = New System.Drawing.Size(967, 267)
+        Me.txtMessageDetails.Size = New System.Drawing.Size(967, 250)
         Me.txtMessageDetails.TabIndex = 16
         '
         'cmdCopyLeft
         '
-        Me.cmdCopyLeft.Location = New System.Drawing.Point(493, 571)
+        Me.cmdCopyLeft.Location = New System.Drawing.Point(491, 574)
         Me.cmdCopyLeft.Name = "cmdCopyLeft"
-        Me.cmdCopyLeft.Size = New System.Drawing.Size(21, 30)
+        Me.cmdCopyLeft.Size = New System.Drawing.Size(25, 40)
         Me.cmdCopyLeft.TabIndex = 5
         Me.cmdCopyLeft.Text = "<"
         Me.cmdCopyLeft.UseVisualStyleBackColor = True
+        '
+        'txtSendUser
+        '
+        Me.txtSendUser.Location = New System.Drawing.Point(75, 13)
+        Me.txtSendUser.Name = "txtSendUser"
+        Me.txtSendUser.Size = New System.Drawing.Size(160, 20)
+        Me.txtSendUser.TabIndex = 1
+        '
+        'lblSendUser
+        '
+        Me.lblSendUser.AutoSize = True
+        Me.lblSendUser.Location = New System.Drawing.Point(6, 16)
+        Me.lblSendUser.Name = "lblSendUser"
+        Me.lblSendUser.Size = New System.Drawing.Size(63, 13)
+        Me.lblSendUser.TabIndex = 0
+        Me.lblSendUser.Text = "User Name:"
+        '
+        'lblSendPassword
+        '
+        Me.lblSendPassword.AutoSize = True
+        Me.lblSendPassword.Location = New System.Drawing.Point(242, 16)
+        Me.lblSendPassword.Name = "lblSendPassword"
+        Me.lblSendPassword.Size = New System.Drawing.Size(56, 13)
+        Me.lblSendPassword.TabIndex = 2
+        Me.lblSendPassword.Text = "Password:"
+        '
+        'txtSendPassword
+        '
+        Me.txtSendPassword.Location = New System.Drawing.Point(304, 13)
+        Me.txtSendPassword.Name = "txtSendPassword"
+        Me.txtSendPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.txtSendPassword.Size = New System.Drawing.Size(160, 20)
+        Me.txtSendPassword.TabIndex = 3
+        '
+        'txtReceivePassword
+        '
+        Me.txtReceivePassword.Location = New System.Drawing.Point(304, 13)
+        Me.txtReceivePassword.Name = "txtReceivePassword"
+        Me.txtReceivePassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.txtReceivePassword.Size = New System.Drawing.Size(160, 20)
+        Me.txtReceivePassword.TabIndex = 3
+        '
+        'lblReceivePassword
+        '
+        Me.lblReceivePassword.AutoSize = True
+        Me.lblReceivePassword.Location = New System.Drawing.Point(242, 16)
+        Me.lblReceivePassword.Name = "lblReceivePassword"
+        Me.lblReceivePassword.Size = New System.Drawing.Size(56, 13)
+        Me.lblReceivePassword.TabIndex = 2
+        Me.lblReceivePassword.Text = "Password:"
+        '
+        'lblReceiveUser
+        '
+        Me.lblReceiveUser.AutoSize = True
+        Me.lblReceiveUser.Location = New System.Drawing.Point(6, 16)
+        Me.lblReceiveUser.Name = "lblReceiveUser"
+        Me.lblReceiveUser.Size = New System.Drawing.Size(63, 13)
+        Me.lblReceiveUser.TabIndex = 0
+        Me.lblReceiveUser.Text = "User Name:"
+        '
+        'txtReceiveUser
+        '
+        Me.txtReceiveUser.Location = New System.Drawing.Point(75, 13)
+        Me.txtReceiveUser.Name = "txtReceiveUser"
+        Me.txtReceiveUser.Size = New System.Drawing.Size(160, 20)
+        Me.txtReceiveUser.TabIndex = 1
         '
         'Form1
         '
@@ -659,4 +742,12 @@ Partial Class Form1
     Friend WithEvents cmdCopyLeft As Button
     Friend WithEvents cmdSendReset As Button
     Friend WithEvents cmdReceiveReset As Button
+    Friend WithEvents txtSendPassword As TextBox
+    Friend WithEvents lblSendPassword As Label
+    Friend WithEvents lblSendUser As Label
+    Friend WithEvents txtSendUser As TextBox
+    Friend WithEvents txtReceivePassword As TextBox
+    Friend WithEvents lblReceivePassword As Label
+    Friend WithEvents lblReceiveUser As Label
+    Friend WithEvents txtReceiveUser As TextBox
 End Class

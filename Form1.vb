@@ -26,6 +26,10 @@ Public Class Form1
 
         chkPersistence.Checked = True
         cmbPriority.SelectedIndex = 0
+        txtSendUser.Text = "admin"
+        txtSendPassword.Text = "admin"
+        txtReceiveUser.Text = "admin"
+        txtReceivePassword.Text = "admin"
         txtSendPort.Text = "61616"
         txtReceivePort.Text = "61616"
         chkReceiveAcknowledge.Checked = False
@@ -38,6 +42,8 @@ Public Class Form1
         If txtSendPort.Text.Trim = "" Or (Not IsNumeric(txtSendPort.Text.Trim)) Then Exit Sub
         If CInt(nudSendQty.Value) <= 0 Then Exit Sub
 
+        Dim strSendUser As String = txtSendUser.Text.Trim
+        Dim strSendPassword As String = txtSendPassword.Text
         Dim strSendServerUri As String = "tcp://" & txtSendServer.Text.Trim & ":" & txtSendPort.Text.Trim
         Dim strSendName As String = txtSendDestination.Text.Trim
         Dim blnThrottled As Boolean = (nudSendThrottle.Value > 0)
@@ -53,7 +59,7 @@ Public Class Form1
             ShowOutput("Connecting to: " & strSendServerUri)
             Dim tspTimeout As TimeSpan = TimeSpan.FromSeconds(10)
             Dim factory As IConnectionFactory = New NMSConnectionFactory(strSendServerUri)
-            connection = factory.CreateConnection()
+            connection = IIf(txtSendUser.Text.Trim = "", factory.CreateConnection(), factory.CreateConnection(strSendUser, strSendPassword))
             session = IIf(blnThrottled, connection.CreateSession(AcknowledgementMode.IndividualAcknowledge), connection.CreateSession(AcknowledgementMode.Transactional))
             destination = SessionUtil.GetDestination(session, strSendName)
             ShowOutput("Using destination: " & destination.ToString)
@@ -93,6 +99,8 @@ Public Class Form1
     End Sub
     Private Sub cmdSendReset_Click(sender As Object, e As EventArgs) Handles cmdSendReset.Click
 
+        txtSendUser.Text = "admin"
+        txtSendPassword.Text = "admin"
         txtSendServer.Text = ""
         txtSendDestination.Text = ""
         txtSendPort.Text = "61616"
@@ -102,6 +110,8 @@ Public Class Form1
     End Sub
     Private Sub cmdReceiveReset_Click(sender As Object, e As EventArgs) Handles cmdReceiveReset.Click
 
+        txtReceiveUser.Text = "admin"
+        txtReceivePassword.Text = "admin"
         txtReceiveServer.Text = ""
         txtReceiveDestination.Text = ""
         txtReceivePort.Text = "61616"
@@ -111,6 +121,8 @@ Public Class Form1
     End Sub
     Private Sub cmdCopyRight_Click(sender As Object, e As EventArgs) Handles cmdCopyRight.Click
 
+        txtReceiveUser.Text = txtSendUser.Text
+        txtReceivePassword.Text = txtSendPassword.Text
         txtReceiveServer.Text = txtSendServer.Text
         txtReceiveDestination.Text = txtSendDestination.Text
         txtReceivePort.Text = txtSendPort.Text
@@ -118,6 +130,8 @@ Public Class Form1
     End Sub
     Private Sub cmdCopyLeft_Click(sender As Object, e As EventArgs) Handles cmdCopyLeft.Click
 
+        txtSendUser.Text = txtReceiveUser.Text
+        txtSendPassword.Text = txtReceivePassword.Text
         txtSendServer.Text = txtReceiveServer.Text
         txtSendDestination.Text = txtReceiveDestination.Text
         txtSendPort.Text = txtReceivePort.Text
@@ -129,9 +143,10 @@ Public Class Form1
         If txtReceiveDestination.Text.Trim = "" Then Exit Sub
         If txtReceivePort.Text.Trim = "" Or (Not IsNumeric(txtReceivePort.Text.Trim)) Then Exit Sub
 
+        Dim strReceiveUser As String = txtReceiveUser.Text.Trim
+        Dim strReceivePassword As String = txtReceivePassword.Text
         Dim strReceiveServerUri As String = "tcp://" & txtReceiveServer.Text.Trim & ":" & txtReceivePort.Text.Trim
         Dim strReceiveName As String = txtReceiveDestination.Text.Trim
-
         Dim connection As IConnection
         Dim session As ISession
         Dim source As IDestination
@@ -144,7 +159,7 @@ Public Class Form1
             Dim dtmReceiveUntil As DateTime = DateAdd(DateInterval.Minute, CDbl(nudReceiveDuration.Value), DateTime.Now)
             Dim tspTimeout As TimeSpan = TimeSpan.FromSeconds(10)
             Dim factory As IConnectionFactory = New NMSConnectionFactory(strReceiveServerUri)
-            connection = factory.CreateConnection()
+            connection = IIf(txtReceiveUser.Text.Trim = "", factory.CreateConnection(), factory.CreateConnection(strReceiveUser, strReceivePassword))
             session = connection.CreateSession(AcknowledgementMode.IndividualAcknowledge)
             source = SessionUtil.GetDestination(session, strReceiveName)
             ShowOutput("Using source: " & source.ToString)
