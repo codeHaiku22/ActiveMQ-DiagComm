@@ -32,6 +32,8 @@ Public Class Form1
         txtReceivePassword.Text = "admin"
         txtSendPort.Text = "61616"
         txtReceivePort.Text = "61616"
+        cmbSendType.SelectedIndex = 0
+        cmbReceiveType.SelectedIndex = 0
         chkReceiveAcknowledge.Checked = False
 
     End Sub
@@ -45,7 +47,7 @@ Public Class Form1
         Dim strSendUser As String = txtSendUser.Text.Trim
         Dim strSendPassword As String = txtSendPassword.Text
         Dim strSendServerUri As String = "tcp://" & txtSendServer.Text.Trim & ":" & txtSendPort.Text.Trim
-        Dim strSendName As String = txtSendDestination.Text.Trim
+        Dim strSendName As String = cmbSendType.Text.Trim & "://" & txtSendDestination.Text.Trim
         Dim blnThrottled As Boolean = (nudSendThrottle.Value > 0)
         Dim connection As IConnection
         Dim session As ISession
@@ -104,6 +106,7 @@ Public Class Form1
         txtSendServer.Text = ""
         txtSendDestination.Text = ""
         txtSendPort.Text = "61616"
+        cmbSendType.SelectedIndex = 0
         nudSendQty.Value = 0
         nudSendThrottle.Value = 0
 
@@ -115,6 +118,7 @@ Public Class Form1
         txtReceiveServer.Text = ""
         txtReceiveDestination.Text = ""
         txtReceivePort.Text = "61616"
+        cmbReceiveType.SelectedIndex = 0
         chkReceiveAcknowledge.Checked = False
         nudReceiveDuration.Value = 0
 
@@ -126,6 +130,7 @@ Public Class Form1
         txtReceiveServer.Text = txtSendServer.Text
         txtReceiveDestination.Text = txtSendDestination.Text
         txtReceivePort.Text = txtSendPort.Text
+        cmbReceiveType.SelectedIndex = cmbSendType.SelectedIndex
 
     End Sub
     Private Sub cmdCopyLeft_Click(sender As Object, e As EventArgs) Handles cmdCopyLeft.Click
@@ -135,6 +140,7 @@ Public Class Form1
         txtSendServer.Text = txtReceiveServer.Text
         txtSendDestination.Text = txtReceiveDestination.Text
         txtSendPort.Text = txtReceivePort.Text
+        cmbSendType.SelectedIndex = cmbReceiveType.SelectedIndex
 
     End Sub
     Private Sub cmdReceive_Click(sender As Object, e As EventArgs) Handles cmdReceive.Click
@@ -146,7 +152,7 @@ Public Class Form1
         Dim strReceiveUser As String = txtReceiveUser.Text.Trim
         Dim strReceivePassword As String = txtReceivePassword.Text
         Dim strReceiveServerUri As String = "tcp://" & txtReceiveServer.Text.Trim & ":" & txtReceivePort.Text.Trim
-        Dim strReceiveName As String = txtReceiveDestination.Text.Trim
+        Dim strReceiveName As String = cmbReceiveType.Text.Trim & "://" & txtReceiveDestination.Text.Trim
         Dim connection As IConnection
         Dim session As ISession
         Dim source As IDestination
