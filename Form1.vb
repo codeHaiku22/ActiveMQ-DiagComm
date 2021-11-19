@@ -26,15 +26,41 @@ Public Class Form1
 
         chkPersistence.Checked = True
         cmbPriority.SelectedIndex = 0
+        chkSendCredentials.Checked = False
         txtSendUser.Text = "admin"
         txtSendPassword.Text = "admin"
+        txtSendPort.Text = "61616"
+        cmbSendType.SelectedIndex = 0
+        chkReceiveCredentials.Checked = False
         txtReceiveUser.Text = "admin"
         txtReceivePassword.Text = "admin"
-        txtSendPort.Text = "61616"
         txtReceivePort.Text = "61616"
-        cmbSendType.SelectedIndex = 0
         cmbReceiveType.SelectedIndex = 0
         chkReceiveAcknowledge.Checked = False
+
+        chkSendCredentials_CheckedChanged(Nothing, Nothing)
+        chkReceiveCredentials_CheckedChanged(Nothing, Nothing)
+
+    End Sub
+    Private Sub chkSendCredentials_CheckedChanged(sender As Object, e As EventArgs) Handles chkSendCredentials.CheckedChanged
+
+        lblSendUser.Enabled = chkSendCredentials.Checked
+        txtSendUser.Enabled = chkSendCredentials.Checked
+        lblSendPassword.Enabled = chkSendCredentials.Checked
+        txtSendPassword.Enabled = chkSendCredentials.Checked
+
+    End Sub
+    Private Sub cmdSendReset_Click(sender As Object, e As EventArgs) Handles cmdSendReset.Click
+
+        chkSendCredentials.Checked = False
+        txtSendUser.Text = "admin"
+        txtSendPassword.Text = "admin"
+        txtSendServer.Text = ""
+        txtSendDestination.Text = ""
+        txtSendPort.Text = "61616"
+        cmbSendType.SelectedIndex = 0
+        nudSendQty.Value = 0
+        nudSendThrottle.Value = 0
 
     End Sub
     Private Sub cmdSend_Click(sender As Object, e As EventArgs) Handles cmdSend.Click
@@ -46,7 +72,7 @@ Public Class Form1
 
         Dim strSendUser As String = txtSendUser.Text.Trim
         Dim strSendPassword As String = txtSendPassword.Text
-        Dim strSendServerUri As String = "tcp://" & txtSendServer.Text.Trim & ":" & txtSendPort.Text.Trim
+        Dim strSendServerUri As String = "activemq:tcp://" & txtSendServer.Text.Trim & ":" & txtSendPort.Text.Trim
         Dim strSendName As String = cmbSendType.Text.Trim & "://" & txtSendDestination.Text.Trim
         Dim blnThrottled As Boolean = (nudSendThrottle.Value > 0)
         Dim connection As IConnection
@@ -61,7 +87,7 @@ Public Class Form1
             ShowOutput("Connecting to: " & strSendServerUri)
             Dim tspTimeout As TimeSpan = TimeSpan.FromSeconds(10)
             Dim factory As IConnectionFactory = New NMSConnectionFactory(strSendServerUri)
-            connection = IIf(txtSendUser.Text.Trim = "", factory.CreateConnection(), factory.CreateConnection(strSendUser, strSendPassword))
+            connection = IIf(chkSendCredentials.Checked, factory.CreateConnection(strSendUser, strSendPassword), factory.CreateConnection())
             session = IIf(blnThrottled, connection.CreateSession(AcknowledgementMode.IndividualAcknowledge), connection.CreateSession(AcknowledgementMode.Transactional))
             destination = SessionUtil.GetDestination(session, strSendName)
             ShowOutput("Using destination: " & destination.ToString)
@@ -99,32 +125,9 @@ Public Class Form1
         End Try
 
     End Sub
-    Private Sub cmdSendReset_Click(sender As Object, e As EventArgs) Handles cmdSendReset.Click
-
-        txtSendUser.Text = "admin"
-        txtSendPassword.Text = "admin"
-        txtSendServer.Text = ""
-        txtSendDestination.Text = ""
-        txtSendPort.Text = "61616"
-        cmbSendType.SelectedIndex = 0
-        nudSendQty.Value = 0
-        nudSendThrottle.Value = 0
-
-    End Sub
-    Private Sub cmdReceiveReset_Click(sender As Object, e As EventArgs) Handles cmdReceiveReset.Click
-
-        txtReceiveUser.Text = "admin"
-        txtReceivePassword.Text = "admin"
-        txtReceiveServer.Text = ""
-        txtReceiveDestination.Text = ""
-        txtReceivePort.Text = "61616"
-        cmbReceiveType.SelectedIndex = 0
-        chkReceiveAcknowledge.Checked = False
-        nudReceiveDuration.Value = 0
-
-    End Sub
     Private Sub cmdCopyRight_Click(sender As Object, e As EventArgs) Handles cmdCopyRight.Click
 
+        chkReceiveCredentials.Checked = chkSendCredentials.Checked
         txtReceiveUser.Text = txtSendUser.Text
         txtReceivePassword.Text = txtSendPassword.Text
         txtReceiveServer.Text = txtSendServer.Text
@@ -135,12 +138,21 @@ Public Class Form1
     End Sub
     Private Sub cmdCopyLeft_Click(sender As Object, e As EventArgs) Handles cmdCopyLeft.Click
 
+        chkSendCredentials.Checked = chkReceiveCredentials.Checked
         txtSendUser.Text = txtReceiveUser.Text
         txtSendPassword.Text = txtReceivePassword.Text
         txtSendServer.Text = txtReceiveServer.Text
         txtSendDestination.Text = txtReceiveDestination.Text
         txtSendPort.Text = txtReceivePort.Text
         cmbSendType.SelectedIndex = cmbReceiveType.SelectedIndex
+
+    End Sub
+    Private Sub chkReceiveCredentials_CheckedChanged(sender As Object, e As EventArgs) Handles chkReceiveCredentials.CheckedChanged
+
+        lblReceiveUser.Enabled = chkReceiveCredentials.Checked
+        txtReceiveUser.Enabled = chkReceiveCredentials.Checked
+        lblReceivePassword.Enabled = chkReceiveCredentials.Checked
+        txtReceivePassword.Enabled = chkReceiveCredentials.Checked
 
     End Sub
     Private Sub cmdReceive_Click(sender As Object, e As EventArgs) Handles cmdReceive.Click
@@ -165,7 +177,7 @@ Public Class Form1
             Dim dtmReceiveUntil As DateTime = DateAdd(DateInterval.Minute, CDbl(nudReceiveDuration.Value), DateTime.Now)
             Dim tspTimeout As TimeSpan = TimeSpan.FromSeconds(10)
             Dim factory As IConnectionFactory = New NMSConnectionFactory(strReceiveServerUri)
-            connection = IIf(txtReceiveUser.Text.Trim = "", factory.CreateConnection(), factory.CreateConnection(strReceiveUser, strReceivePassword))
+            connection = IIf(chkReceiveCredentials.Checked, factory.CreateConnection(strReceiveUser, strReceivePassword), factory.CreateConnection())
             session = connection.CreateSession(AcknowledgementMode.IndividualAcknowledge)
             source = SessionUtil.GetDestination(session, strReceiveName)
             ShowOutput("Using source: " & source.ToString)
@@ -208,11 +220,24 @@ Public Class Form1
         End Try
 
     End Sub
+    Private Sub cmdReceiveReset_Click(sender As Object, e As EventArgs) Handles cmdReceiveReset.Click
+
+        chkReceiveCredentials.Checked = False
+        txtReceiveUser.Text = "admin"
+        txtReceivePassword.Text = "admin"
+        txtReceiveServer.Text = ""
+        txtReceiveDestination.Text = ""
+        txtReceivePort.Text = "61616"
+        cmbReceiveType.SelectedIndex = 0
+        chkReceiveAcknowledge.Checked = False
+        nudReceiveDuration.Value = 0
+
+    End Sub
     Private Function CreateMessage(ByVal session As ISession, ByRef message As ITextMessage) As Boolean
 
         Dim blnError As Boolean
 
-        Try
+    Try
             message = session.CreateTextMessage()
             Dim tsTimeToLive As TimeSpan = (dtpExpirationDate.Value.Date + dtpExpirationTime.Value.TimeOfDay) - DateTime.Now
             Dim strPriority() As String = cmbPriority.Text.Split("-")
@@ -289,7 +314,7 @@ Public Class Form1
 
 
     End Function
-    Private Sub cmdClearMessageFields_Click_1(sender As Object, e As EventArgs) Handles cmdClearMessageFields.Click
+    Private Sub cmdClearMessageFields_Click(sender As Object, e As EventArgs) Handles cmdClearMessageFields.Click
 
         txtCorrelationId.Clear()
         dtpExpirationDate.Value = DateTime.Now

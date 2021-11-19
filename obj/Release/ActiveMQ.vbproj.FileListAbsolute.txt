@@ -34,7 +34,6 @@ C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ DiagComm\bin\Rel
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ DiagComm\bin\Release\ActiveMQ DiagComm.xml
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ DiagComm\bin\Release\Apache.NMS.ActiveMQ.dll
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ DiagComm\bin\Release\Apache.NMS.dll
-C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ DiagComm\obj\Release\ActiveMQ.vbproj.AssemblyReference.cache
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ DiagComm\obj\Release\ActiveMQ_DiagComm.Form1.resources
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ DiagComm\obj\Release\ActiveMQ_DiagComm.Resources.resources
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ DiagComm\obj\Release\ActiveMQ.vbproj.GenerateResource.cache
