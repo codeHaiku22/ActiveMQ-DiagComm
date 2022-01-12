@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("ActiveMQ DiagComm")>
-<Assembly: AssemblyCopyright("Copyright ©2021")>
+<Assembly: AssemblyCopyright("Copyright ©2022")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("2.3.0.0")>
-<Assembly: AssemblyFileVersion("2.3.0.0")>
+<Assembly: AssemblyVersion("2.4.0.0")>
+<Assembly: AssemblyFileVersion("2.4.0.0")>

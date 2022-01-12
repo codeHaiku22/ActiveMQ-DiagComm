@@ -85,7 +85,7 @@ Public Class Form1
             ShowOutput("########## MESSAGE SEND ##########")
             ShowOutput(Now().ToString)
             ShowOutput("Connecting to: " & strSendServerUri)
-            Dim tspTimeout As TimeSpan = TimeSpan.FromSeconds(10)
+            Dim tspTimeout As TimeSpan = TimeSpan.FromSeconds(30)
             Dim factory As IConnectionFactory = New NMSConnectionFactory(strSendServerUri)
             connection = IIf(chkSendCredentials.Checked, factory.CreateConnection(strSendUser, strSendPassword), factory.CreateConnection())
             session = IIf(blnThrottled, connection.CreateSession(AcknowledgementMode.IndividualAcknowledge), connection.CreateSession(AcknowledgementMode.Transactional))
@@ -118,6 +118,7 @@ Public Class Form1
             End If
             If connection IsNot Nothing Then
                 connection.Stop()
+                connection.Close()
                 connection.Dispose()
             End If
             If destination IsNot Nothing Then destination.Dispose()
@@ -175,7 +176,7 @@ Public Class Form1
             ShowOutput(Now().ToString)
             ShowOutput("Connecting to: " & strReceiveServerUri)
             Dim dtmReceiveUntil As DateTime = DateAdd(DateInterval.Minute, CDbl(nudReceiveDuration.Value), DateTime.Now)
-            Dim tspTimeout As TimeSpan = TimeSpan.FromSeconds(10)
+            Dim tspTimeout As TimeSpan = TimeSpan.FromSeconds(30)
             Dim factory As IConnectionFactory = New NMSConnectionFactory(strReceiveServerUri)
             connection = IIf(chkReceiveCredentials.Checked, factory.CreateConnection(strReceiveUser, strReceivePassword), factory.CreateConnection())
             session = connection.CreateSession(AcknowledgementMode.IndividualAcknowledge)
@@ -184,6 +185,7 @@ Public Class Form1
             consumer = session.CreateConsumer(source)
             connection.Start()
             If nudReceiveDuration.Value = 0 Then
+                'AddHandler consumer.Listener, AddressOf OnMessage
                 Dim message As ITextMessage = consumer.Receive(tspTimeout)
                 If message Is Nothing Then
                     ShowOutput("No message received!")
@@ -213,6 +215,7 @@ Public Class Form1
             End If
             If connection IsNot Nothing Then
                 connection.Stop()
+                connection.Close()
                 connection.Dispose()
             End If
             If source IsNot Nothing Then source.Dispose()
@@ -341,6 +344,11 @@ Public Class Form1
         strMessage = strMessage & vbCrLf
 
         txtOutput.AppendText(strMessage)
+
+    End Sub
+    Private Sub OnMessage(ByVal receivedMsg As ITextMessage)
+
+        'MsgBox("Message Recieved: " & receivedMsg.Text)
 
     End Sub
 
