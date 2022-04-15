@@ -42,3 +42,17 @@ C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ DiagComm\obj\Deb
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ DiagComm\obj\Debug\ActiveMQ DiagComm.exe
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ DiagComm\obj\Debug\ActiveMQ DiagComm.xml
 C:\Users\dgrewal\Documents\Projects\Development\dotNet\ActiveMQ DiagComm\obj\Debug\ActiveMQ DiagComm.pdb
+C:\Users\dgrewal\Documents\Projects\Law and Justice\ActiveMQ Processor\ActiveMQ DiagComm\bin\Debug\ActiveMQ DiagComm.exe.config
+C:\Users\dgrewal\Documents\Projects\Law and Justice\ActiveMQ Processor\ActiveMQ DiagComm\bin\Debug\ActiveMQ DiagComm.exe
+C:\Users\dgrewal\Documents\Projects\Law and Justice\ActiveMQ Processor\ActiveMQ DiagComm\bin\Debug\ActiveMQ DiagComm.pdb
+C:\Users\dgrewal\Documents\Projects\Law and Justice\ActiveMQ Processor\ActiveMQ DiagComm\bin\Debug\ActiveMQ DiagComm.xml
+C:\Users\dgrewal\Documents\Projects\Law and Justice\ActiveMQ Processor\ActiveMQ DiagComm\bin\Debug\Apache.NMS.ActiveMQ.dll
+C:\Users\dgrewal\Documents\Projects\Law and Justice\ActiveMQ Processor\ActiveMQ DiagComm\bin\Debug\Apache.NMS.dll
+C:\Users\dgrewal\Documents\Projects\Law and Justice\ActiveMQ Processor\ActiveMQ DiagComm\obj\Debug\ActiveMQ_DiagComm.Form1.resources
+C:\Users\dgrewal\Documents\Projects\Law and Justice\ActiveMQ Processor\ActiveMQ DiagComm\obj\Debug\ActiveMQ_DiagComm.Resources.resources
+C:\Users\dgrewal\Documents\Projects\Law and Justice\ActiveMQ Processor\ActiveMQ DiagComm\obj\Debug\ActiveMQ.vbproj.GenerateResource.cache
+C:\Users\dgrewal\Documents\Projects\Law and Justice\ActiveMQ Processor\ActiveMQ DiagComm\obj\Debug\ActiveMQ.vbproj.CoreCompileInputs.cache
+C:\Users\dgrewal\Documents\Projects\Law and Justice\ActiveMQ Processor\ActiveMQ DiagComm\obj\Debug\ActiveMQ.vbproj.CopyComplete
+C:\Users\dgrewal\Documents\Projects\Law and Justice\ActiveMQ Processor\ActiveMQ DiagComm\obj\Debug\ActiveMQ DiagComm.exe
+C:\Users\dgrewal\Documents\Projects\Law and Justice\ActiveMQ Processor\ActiveMQ DiagComm\obj\Debug\ActiveMQ DiagComm.xml
+C:\Users\dgrewal\Documents\Projects\Law and Justice\ActiveMQ Processor\ActiveMQ DiagComm\obj\Debug\ActiveMQ DiagComm.pdb

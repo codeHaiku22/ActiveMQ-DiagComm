@@ -30,6 +30,7 @@ Partial Class Form1
         Me.cmdClearOutput = New System.Windows.Forms.Button()
         Me.txtSendDestination = New System.Windows.Forms.TextBox()
         Me.grpbxSend = New System.Windows.Forms.GroupBox()
+        Me.chkSendCredentials = New System.Windows.Forms.CheckBox()
         Me.cmbSendType = New System.Windows.Forms.ComboBox()
         Me.txtSendPassword = New System.Windows.Forms.TextBox()
         Me.lblSendPassword = New System.Windows.Forms.Label()
@@ -46,6 +47,7 @@ Partial Class Form1
         Me.lblSendServer = New System.Windows.Forms.Label()
         Me.txtSendServer = New System.Windows.Forms.TextBox()
         Me.grpbxReceive = New System.Windows.Forms.GroupBox()
+        Me.chkReceiveCredentials = New System.Windows.Forms.CheckBox()
         Me.cmbReceiveType = New System.Windows.Forms.ComboBox()
         Me.txtReceivePassword = New System.Windows.Forms.TextBox()
         Me.lblReceivePassword = New System.Windows.Forms.Label()
@@ -85,8 +87,6 @@ Partial Class Form1
         Me.txtCorrelationId = New System.Windows.Forms.TextBox()
         Me.txtMessageDetails = New System.Windows.Forms.TextBox()
         Me.cmdCopyLeft = New System.Windows.Forms.Button()
-        Me.chkSendCredentials = New System.Windows.Forms.CheckBox()
-        Me.chkReceiveCredentials = New System.Windows.Forms.CheckBox()
         CType(Me.nudSendQty, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpbxSend.SuspendLayout()
         CType(Me.nudSendThrottle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -174,6 +174,16 @@ Partial Class Form1
         Me.grpbxSend.Size = New System.Drawing.Size(470, 125)
         Me.grpbxSend.TabIndex = 3
         Me.grpbxSend.TabStop = False
+        '
+        'chkSendCredentials
+        '
+        Me.chkSendCredentials.AutoSize = True
+        Me.chkSendCredentials.Location = New System.Drawing.Point(10, 15)
+        Me.chkSendCredentials.Name = "chkSendCredentials"
+        Me.chkSendCredentials.Size = New System.Drawing.Size(78, 17)
+        Me.chkSendCredentials.TabIndex = 0
+        Me.chkSendCredentials.Text = "Credentials"
+        Me.chkSendCredentials.UseVisualStyleBackColor = True
         '
         'cmbSendType
         '
@@ -329,6 +339,16 @@ Partial Class Form1
         Me.grpbxReceive.Size = New System.Drawing.Size(470, 125)
         Me.grpbxReceive.TabIndex = 6
         Me.grpbxReceive.TabStop = False
+        '
+        'chkReceiveCredentials
+        '
+        Me.chkReceiveCredentials.AutoSize = True
+        Me.chkReceiveCredentials.Location = New System.Drawing.Point(10, 15)
+        Me.chkReceiveCredentials.Name = "chkReceiveCredentials"
+        Me.chkReceiveCredentials.Size = New System.Drawing.Size(78, 17)
+        Me.chkReceiveCredentials.TabIndex = 0
+        Me.chkReceiveCredentials.Text = "Credentials"
+        Me.chkReceiveCredentials.UseVisualStyleBackColor = True
         '
         'cmbReceiveType
         '
@@ -670,7 +690,7 @@ Partial Class Form1
         'txtMessageDetails
         '
         Me.txtMessageDetails.Location = New System.Drawing.Point(9, 178)
-        Me.txtMessageDetails.MaxLength = 65534
+        Me.txtMessageDetails.MaxLength = 0
         Me.txtMessageDetails.Multiline = True
         Me.txtMessageDetails.Name = "txtMessageDetails"
         Me.txtMessageDetails.ScrollBars = System.Windows.Forms.ScrollBars.Both
@@ -685,26 +705,6 @@ Partial Class Form1
         Me.cmdCopyLeft.TabIndex = 5
         Me.cmdCopyLeft.Text = "<"
         Me.cmdCopyLeft.UseVisualStyleBackColor = True
-        '
-        'chkSendCredentials
-        '
-        Me.chkSendCredentials.AutoSize = True
-        Me.chkSendCredentials.Location = New System.Drawing.Point(10, 15)
-        Me.chkSendCredentials.Name = "chkSendCredentials"
-        Me.chkSendCredentials.Size = New System.Drawing.Size(78, 17)
-        Me.chkSendCredentials.TabIndex = 0
-        Me.chkSendCredentials.Text = "Credentials"
-        Me.chkSendCredentials.UseVisualStyleBackColor = True
-        '
-        'chkReceiveCredentials
-        '
-        Me.chkReceiveCredentials.AutoSize = True
-        Me.chkReceiveCredentials.Location = New System.Drawing.Point(10, 15)
-        Me.chkReceiveCredentials.Name = "chkReceiveCredentials"
-        Me.chkReceiveCredentials.Size = New System.Drawing.Size(78, 17)
-        Me.chkReceiveCredentials.TabIndex = 0
-        Me.chkReceiveCredentials.Text = "Credentials"
-        Me.chkReceiveCredentials.UseVisualStyleBackColor = True
         '
         'Form1
         '
